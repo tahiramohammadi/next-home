@@ -10,18 +10,18 @@
     <v-divider> </v-divider>
     
 
-    <sizeForm
+    <SizeForm
       v-if="
         propertyType === 'Apartment' ||
         propertyType === 'Shop' ||
         propertyType === 'House'
       "
     >
-    </sizeForm>
+    </SizeForm>
     <plotSizeForm v-if="propertyType === 'Plot' || propertyType === 'House'">
     </plotSizeForm>
-    <priceForm> </priceForm>
-    <UsageForm> </UsageForm>
+    <PriceForm> </PriceForm>
+    <UsageForm> </UsageForm> 
     <buildingFactsForm v-if="propertyType != 'Plot'"> </buildingFactsForm>
     <v-row justify="center"> 
       <v-subheader > Object description </v-subheader>
@@ -45,12 +45,44 @@
     </v-row>
   </v-container>
 </template>
+ 
+<script setup>
+import SizeForm from '../components/SizeForm.vue';
+ import plotSizeForm from '../components/PlotSizeForm.vue';
+   import PriceForm from '../components/PriceForm.vue';
+    import UsageForm from '../components/UsageForm.vue';
+import buildingFactsForm from '../components/BuildingFactsForm.vue';
 
-<script>
-import sizeForm from '../components/SizeForm.vue';
-import plotSizeForm from '../components/PlotSizeForm.vue';
+import { useStore } from 'vuex';
+import {computed } from 'vue'
+const store=useStore()
+   
+const propertyType = computed(() => store.state.rubricModule.propertyType);
+
+    const title=computed({
+     get(){
+       return store.state.titleAndDescriptionModule.title
+     },
+     set(value){
+        store.commit('titleAndDescriptionModule/updateTitle', value)
+     } 
+    })
+  const description=computed({
+ 
+   get(){
+     return store.state.titleAndDescriptionModule.description
+   },
+   set(value){
+     store.commit('titleAndDescriptionModule/updateDescription', value)
+   }
+  })
+  
+</script>    
+<!-- <script>
+import SizeForm from '../components/SizeForm.vue';
+ import plotSizeForm from '../components/PlotSizeForm.vue';
 import PriceForm from '../components/PriceForm.vue';
-import UsageForm from '../components/UsageForm.vue';
+// import UsageForm from '../components/UsageForm.vue';
 import buildingFactsForm from '../components/BuildingFactsForm.vue';
 
 import { mapState } from 'vuex';
@@ -88,14 +120,15 @@ export default {
   },
 
   components: {
-    sizeForm,
-    plotSizeForm,
-    PriceForm,
-    UsageForm,
+     SizeForm,
+     plotSizeForm,
+     PriceForm,
+    // UsageForm,
     buildingFactsForm,
   },
 };
-</script>
+</script>  -->
+
 <style scoped>
 .subHeader {
   align-content: center;

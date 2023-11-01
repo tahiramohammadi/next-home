@@ -18,26 +18,54 @@
   </v-row>
 </template>
 
-<script>
-export default {
-  created: function () {
-    this.$store.commit('sizeModule/updateUnit', this.squareMeter);
-  },
-  data() {
-    return {
-      squareMeter: '\u33A1',
-    };
-  },
+ <script>
+import {useStore} from 'vuex'
+import {computed,  ref } from 'vue'
+export default{
+  setup(){
+    const store=useStore()
+     const squareMeter=ref('\u33A1')
+     function created(){
+      store.commit('sizeModule/updateUnit', squareMeter)
+     }
+     const value =computed({
+        get(){
+             return store.state.sizeModule.size.value
+        },
+        set(val){
+            store.commit('sizeModule/updateValue', val)
+        }
+      })
+      
+      return{
+      created
+    }
 
-  computed: {
-    value: {
-      get() {
-        return this.$store.state.sizeModule.size.value;
-      },
-      set(val) {
-        this.$store.commit('sizeModule/updateValue', val);
-      },
-    },
   },
-};
+}
+   
+   
+// export default {
+
+//   created () {
+//     this.$store.commit('sizeModule/updateUnit', this.squareMeter);
+//   },
+  
+  // data() {
+  //   return {
+  //     squareMeter: '\u33A1',
+  //   };
+  // },
+     
+//   computed: {
+//     value: {
+//       get() {
+//         return this.$store.state.sizeModule.size.value;
+//       },
+//       set(val) {
+//         this.$store.commit('sizeModule/updateValue', val);
+//       },
+//     },
+//   },
+// };
 </script>

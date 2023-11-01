@@ -1,12 +1,11 @@
 <template>
-  <keep-alive>
     <v-container fluid>
       <v-row justify="center">
         <v-col md="6" sm="6" xs="6"> </v-col>
         <v-col md="1" sm="1" xs="1">
           <v-file-input
             prepend-icon="mdi-camera"
-            hide-input
+            
             success
             v-model="submitFile"
           ></v-file-input>
@@ -15,9 +14,9 @@
       </v-row>
 
       <v-divider></v-divider>
-      <v-row v-if="photos.length > 0" justify="center">
-        <template v-for="(pic, i) in photos">
-          <v-col :key="i" cols="12" md="5">
+      <v-row  justify="center">
+      <template v-for="(pic, i) in photos">
+          <v-col  v-if="photos.length > 0"  :key="i"  cols="12" md="5">
             <v-hover v-slot:default="{ hover }">
               <v-card
                 :elevation="hover ? 12 : 2"
@@ -40,7 +39,7 @@
                         >
                           <v-icon
                             :class="{ 'show-btns': hover }"
-                            color="transparent"
+                            color="red"
                           >
                             mdi-delete
                           </v-icon>
@@ -68,7 +67,6 @@
 
       <button v-on:click="postPhotos()">Submit</button>
     </v-container>
-  </keep-alive>
 </template>
 
 <script>
@@ -86,21 +84,19 @@ export default {
   },
 
   computed: {
-      
     
-        
-     
-    submitFile: {
+    submitFile: { 
       set(photo) {
-        let imsrc = URL.createObjectURL(photo);
+        let imsrc = URL.createObjectURL(new Blob(photo));
         this.photos.unshift(imsrc);
-        //
         let formData = new FormData();
         formData.append('file', photo);
         this.formDatas.unshift(formData);
-       
+      
       },
+    
     },
+    
   },
 
   methods: {
@@ -128,7 +124,7 @@ export default {
       let store = this.$store;
       let formDatas = this.formDatas;
       let contentPromises = [];
-      let photoLinks = this.$store.state.photosModule.photoLinks;;
+      let photoLinks = this.$store.state.photosModule.photoLinks;
       let promises = [];
       formDatas.forEach(function () {
         promises.push(Axios.post(path, { summary: '' }));
@@ -171,7 +167,7 @@ export default {
 };
 </script>
 <style scoped>
-/deep/ #fileInput {
+  #fileInput {
   display: none;
 }
 .my-8 {

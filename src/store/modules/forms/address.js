@@ -1,4 +1,4 @@
-/*const state = () => ({
+const state = () => ({
   address: {
     street: "mytreet",
     houseNr: 7,
@@ -31,4 +31,3 @@ export default {
   mutations,
   state,
 };
-*/

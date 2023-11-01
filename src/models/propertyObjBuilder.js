@@ -3,7 +3,7 @@ export default function createPropertyObj(state) {
   return {
     title: state.titleAndDescriptionModule.title,
     target: state.rubricModule.target,
-    usage: state.usageModule.usages,
+    usages: state.usageModule.usages,
     size: state.sizeModule.size,
     plotSize: state.plotSizeModule.size,
     price: state.priceModule.price,

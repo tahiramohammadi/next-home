@@ -25,54 +25,52 @@
   </v-container>
 </template>
 
-<script>
-
-
-export default {
-
-  computed: {
-    streetInput: {
-      get() {
-        return this.$store.state.addressModule.address.street;
-      },
-      set(value) {
-        this.$store.commit('addressModule/updateStreet', value);
-      },
-    },
-
-    houseNrInput: {
-      get() {
-        return this.$store.state.addressModule.address.houseNr;
-      },
-      set(value) {
-        this.$store.commit('addressModule/updateHouseNr', value);
-      },
-    },
-
-    zipCodeInput: {
-      get() {
-        return this.$store.state.addressModule.address.zipCode;
-      },
-      set(value) {
-        this.$store.commit('addressModule/updateZipCode', value);
-      },
-    },
-    cityInput: {
-      get() {
-        return this.$store.state.addressModule.address.city;
-      },
-      set(value) {
-        this.$store.commit('addressModule/updateCity', value);
-      },
-    },
-    moreInformationInput: {
-      get() {
-        return this.$store.state.addressModule.address.moreInformation;
-      },
-      set(value) {
-        this.$store.commit('addressModule/updateMoreInformation', value);
-      },
-    },
+<script setup>
+import { computed } from 'vue';
+import { useStore } from 'vuex'
+const store = useStore()
+const streetInput = computed({
+  get() {
+    return store.state.addressModule.address.street
   },
-};
+  set(value) {
+    store.commit('addressModule/updateStreet', value)
+  },
+
+});
+const houseNrInput = computed({
+  get() {
+    return store.state.addressModule.address.houseNr;
+  },
+  set(value) {
+    store.commit('addressModule/updateHouseNr', value);
+  }
+})
+
+
+const zipCodeInput = computed({
+  get() {
+    return store.state.addressModule.address.zipCode;
+  },
+  set(value) {
+    store.commit('addressModule/updateZipCode', value);
+  }
+})
+const cityInput = computed({
+  get() {
+    return store.state.addressModule.address.city;
+  },
+  set(value) {
+    store.commit('addressModule/updateCity', value);
+  }
+});
+const moreInformationInput = computed({
+  get() {
+    return store.state.addressModule.address.moreInformation;
+  },
+  set(value) {
+    store.commit('addressModule/updateMoreInformation', value);
+  }
+});
+
 </script>

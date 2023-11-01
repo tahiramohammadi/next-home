@@ -1,6 +1,5 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-//import VuexPersistence from 'vuex-persist';
+
+import { createStore } from 'vuex'
 import rubricModule from './modules/forms/rubric';
 import addressModule from './modules/forms/address';
 import priceModule from './modules/forms/price';
@@ -10,14 +9,10 @@ import buildingFactsModule from './modules/forms/buildingFacts';
 import titleAndDescriptionModule from './modules/forms/titleAndDescription';
 import photosModule from './modules/forms/photos';
 import contactPersonModule from './modules/forms/contactPerson'; 
-/*
-const vuexLocal = new VuexPersistence({
-  storage: window.sessionStorage,
-}); */
 
-Vue.use(Vuex);
 
-export default new Vuex.Store({
+
+const store= createStore({
   strict: process.env.NODE_ENV !== 'production',
   modules: {
     rubricModule, 
@@ -33,3 +28,4 @@ export default new Vuex.Store({
   },
   //plugins: [vuexLocal.plugin],
 });
+export default store

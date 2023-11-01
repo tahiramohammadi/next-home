@@ -22,6 +22,30 @@
   </v-container>
 </template>
 
+<!-- <script setup>
+import { useStore } from 'vuex';
+const store=useStore()
+       const title=computed({
+        get(){
+          return store.state.titleAndDescriptionModule.title
+        },
+        set(val){
+              store.commit('titleAndDescriptionModule/updateTitle', value)
+        }
+       })
+
+       const description=computed({
+        get(){
+          return store.state.titleAndDescriptionModule.description
+        },
+        set(val){
+              store.commit( 'titleAndDescriptionModule/updateDescription', value)
+        }
+       })
+       
+
+
+</script> -->
 <script>
 export default {
   data() {

@@ -7,11 +7,7 @@
     <FormNavigator> </FormNavigator>
   </v-container>
 </template>
-<script>
+<script setup>
 import FormNavigator from './FormNavigator';
-export default {
-  components: {
-    FormNavigator,
-  },
-};
+
 </script>

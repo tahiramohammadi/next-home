@@ -9,22 +9,17 @@
           max-width="120"
         ></v-img>
       </v-app-bar>
+      
     </div>
-    <v-content>
-      <v-container>
-     
-        <router-view />
-     
-      </v-container>
-    </v-content>
+    <v-main>
+      <router-view/>
+    </v-main>
   </v-app>
 </template>
 
 <script>
 
 export default {
-  components: {
-    
-  },
-};
+  name: 'App',
+}
 </script>

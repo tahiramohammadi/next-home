@@ -1,7 +1,6 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
 
-Vue.use(VueRouter);
+import { createRouter, createWebHistory } from 'vue-router'
+
 
 const routes = [
 
@@ -50,9 +49,9 @@ const routes = [
   },
 ];
 
-const router = new VueRouter({
-  mode: 'history',
-  routes,
-});
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes
+})
 
-export default router;
+export default router
