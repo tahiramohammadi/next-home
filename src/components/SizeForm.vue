@@ -43,29 +43,5 @@ export default{
 
   },
 }
-   
-   
-// export default {
 
-//   created () {
-//     this.$store.commit('sizeModule/updateUnit', this.squareMeter);
-//   },
-  
-  // data() {
-  //   return {
-  //     squareMeter: '\u33A1',
-  //   };
-  // },
-     
-//   computed: {
-//     value: {
-//       get() {
-//         return this.$store.state.sizeModule.size.value;
-//       },
-//       set(val) {
-//         this.$store.commit('sizeModule/updateValue', val);
-//       },
-//     },
-//   },
-// };
 </script>

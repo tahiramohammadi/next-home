@@ -39,8 +39,6 @@
             <v-text-field label="Avilable from" v-model="availableFrom" type="date" :value="availableFromDisp" v-on="on"  color="green lighten-1">
             </v-text-field>
           </template>
-          <!-- <v-date-picker no-title  color="success">
-          </v-date-picker> -->
         </v-menu>
       </v-col>
     </v-row>
@@ -53,8 +51,6 @@
             <v-text-field label="Avilable to" type="date" v-model="availableTo" :value="availableToDisp" v-on="on"  color="success">
             </v-text-field>
           </template>
-          <!-- <v-date-picker no-title  color="green lighten-1">
-          </v-date-picker> -->
         </v-menu>
       </v-col>
     </v-row>
@@ -124,77 +120,4 @@ const availableTo = computed({
 
 
 </script>
-<!-- <script>
-import { mapState } from 'vuex';
 
-export default {
-  data() {
-    return {
-      furnishments: ['Fully furnished', 'Partly furnished', 'Not furnished'],
-      availableFromMenu: false,
-      availableToMenu: false,
-    };
-  },
-  computed: {
-    ...mapState({
-      propertyType: (state) => {
-        return state.rubricModule.propertyType;
-      },
-      availableFromDisp: (state) => {
-        return state.buildingFactsModule.availableFrom;
-      },
-      availableToDisp: (state) => {
-        return state.buildingFactsModule.availableTo;
-      },
-    }),
-    furnished: {
-      get() {
-        return this.$store.state.buildingFactsModule.furnished;
-      },
-      set(val) {
-        this.$store.commit('buildingFactsModule/updateFurnished', val);
-      },
-    },
-    numberOfRooms: {
-      get() {
-        return this.$store.state.buildingFactsModule.numberOfRooms;
-      },
-      set(val) {
-        this.$store.commit('buildingFactsModule/updateNumberOfRooms', val);
-      },
-    },
-    numberofFloors: {
-      get() {
-        return this.$store.state.buildingFactsModule.numberofFloors;
-      },
-      set(val) {
-        this.$store.commit('buildingFactsModule/updateNumberOfFloors', val);
-      },
-    },
-    floorNumber: {
-      get() {
-        return this.$store.state.buildingFactsModule.floorNumber;
-      },
-      set(val) {
-        this.$store.commit('buildingFactsModule/updateFloorNumber', val);
-      },
-    },
-    availableFrom: {
-      get() {
-        return this.$store.state.buildingFactsModule.availableFrom;
-      },
-      set(val) {
-        this.$store.commit('buildingFactsModule/updateAvailableFrom', val);
-      },
-    },
-    availableTo: {
-      get() {
-        return this.$store.state.buildingFactsModule.availableTo;
-      },
-      set(val) {
-        this.$store.commit('buildingFactsModule/updateAvailableTo', val);
-      },
-    },
-  },
-};
-</script> -->

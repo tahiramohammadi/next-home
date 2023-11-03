@@ -65,43 +65,4 @@ const moreInformation = computed({
 })
 
 </script>
-<!-- <script>
-
-export default {
-  computed: {
-    name: {
-      get() {
-        return this.$store.state.contactPersonModule.name;
-      },
-      set(val) {
-        this.$store.commit('contactPersonModule/updateName', val);
-      },
-    },
-    email: {
-      get() {
-        return this.$store.state.contactPersonModule.email;
-      },
-      set(val) {
-        this.$store.commit('contactPersonModule/updateEmail', val);
-      },
-    },
-    phoneNumber: {
-      get() {
-        return this.$store.state.contactPersonModule.phoneNumber;
-      },
-      set(val) {
-        this.$store.commit('contactPersonModule/updatePhoneNumber', val);
-      },
-    },
-    moreInformation: {
-      get() {
-        return this.$store.state.contactPersonModule.moreInformation;
-      },
-      set(val) {
-        this.$store.commit('contactPersonModule/updateMoreInformation', val);
-      },
-    },
-  },
-};
-</script> -->
 

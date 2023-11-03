@@ -78,57 +78,6 @@ const propertyType = computed(() => store.state.rubricModule.propertyType);
   })
   
 </script>    
-<!-- <script>
-import SizeForm from '../components/SizeForm.vue';
- import plotSizeForm from '../components/PlotSizeForm.vue';
-import PriceForm from '../components/PriceForm.vue';
-// import UsageForm from '../components/UsageForm.vue';
-import buildingFactsForm from '../components/BuildingFactsForm.vue';
-
-import { mapState } from 'vuex';
-
-export default {
-  data() {
-    return {};
-  },
-
-  computed: {
-    ...mapState({
-      propertyType: (state) => {
-        return state.rubricModule.propertyType;
-      },
-    }),
-    title: {
-      get() {
-        return this.$store.state.titleAndDescriptionModule.title;
-      },
-      set(value) {
-        this.$store.commit('titleAndDescriptionModule/updateTitle', value);
-      },
-    },
-    description: {
-      get() {
-        return this.$store.state.titleAndDescriptionModule.description;
-      },
-      set(value) {
-        this.$store.commit(
-          'titleAndDescriptionModule/updateDescription',
-          value
-        );
-      },
-    },
-  },
-
-  components: {
-     SizeForm,
-     plotSizeForm,
-     PriceForm,
-    // UsageForm,
-    buildingFactsForm,
-  },
-};
-</script>  -->
-
 <style scoped>
 .subHeader {
   align-content: center;

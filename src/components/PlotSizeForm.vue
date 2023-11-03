@@ -35,39 +35,4 @@ const unit = computed({
 })
 
 </script>
-<!-- <script>
-//import sizeModule from '../store/modules/forms/size';
-export default {
-  /*
-  created: function () {
-    if (!this.$store.state.plotSizeModule) {
-      this.$store.registerModule('plotSizeModule', sizeModule);
-    }
-  },
-  */
-  data() {
-    return {
-      sizeUnits: ['\u33A1', '\u33A2', 'Biswa', 'Biswasa', 'Girib'],
-    };
-  },
-  computed: {
-    value: {
-      get() {
-        return this.$store.state.plotSizeModule.size.value;
-      },
-      set(val) {
-        this.$store.commit('plotSizeModule/updateValue', val);
-      },
-    },
 
-    unit: {
-      get() {
-        return this.$store.state.plotSizeModule.size.unit;
-      },
-      set(val) {
-        this.$store.commit('plotSizeModule/updateUnit', val);
-      },
-    },
-  },
-};
-</script> -->

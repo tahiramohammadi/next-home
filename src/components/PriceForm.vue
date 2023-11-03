@@ -37,35 +37,5 @@ const currency = computed({
     store.commit('priceModule/updateCurrency', value);
   }
 })
-
-
 </script>
 
-<!-- <script>
-export default {
-  data() {
-    return {
-      currencies: ['AFN', 'USD', 'EUR'],
-    };
-  },
-
-  computed: {
-    amount: {
-      get() {
-        return this.$store.state.priceModule.price.amount;
-      },
-      set(value) {
-        this.$store.commit('priceModule/updateAmount', value);
-      },
-    },
-    currency: {
-      get() {
-        return this.$store.state.priceModule.price.currency;
-      },
-      set(value) {
-        this.$store.commit('priceModule/updateCurrency', value);
-      },
-    },
-  },
-};
-</script> -->
