@@ -10,18 +10,18 @@
     <v-divider> </v-divider>
     
 
-    <sizeForm
+    <SizeForm
       v-if="
         propertyType === 'Apartment' ||
         propertyType === 'Shop' ||
         propertyType === 'House'
       "
     >
-    </sizeForm>
+    </SizeForm>
     <plotSizeForm v-if="propertyType === 'Plot' || propertyType === 'House'">
     </plotSizeForm>
-    <priceForm> </priceForm>
-    <UsageForm> </UsageForm>
+    <PriceForm> </PriceForm>
+    <UsageForm> </UsageForm> 
     <buildingFactsForm v-if="propertyType != 'Plot'"> </buildingFactsForm>
     <v-row justify="center"> 
       <v-subheader > Object description </v-subheader>
@@ -45,57 +45,39 @@
     </v-row>
   </v-container>
 </template>
-
-<script>
-import sizeForm from '../components/SizeForm.vue';
-import plotSizeForm from '../components/PlotSizeForm.vue';
-import PriceForm from '../components/PriceForm.vue';
-import UsageForm from '../components/UsageForm.vue';
+ 
+<script setup>
+import SizeForm from '../components/SizeForm.vue';
+ import plotSizeForm from '../components/PlotSizeForm.vue';
+   import PriceForm from '../components/PriceForm.vue';
+    import UsageForm from '../components/UsageForm.vue';
 import buildingFactsForm from '../components/BuildingFactsForm.vue';
 
-import { mapState } from 'vuex';
+import { useStore } from 'vuex';
+import {computed } from 'vue'
+const store=useStore()
+   
+const propertyType = computed(() => store.state.rubricModule.propertyType);
 
-export default {
-  data() {
-    return {};
-  },
-
-  computed: {
-    ...mapState({
-      propertyType: (state) => {
-        return state.rubricModule.propertyType;
-      },
-    }),
-    title: {
-      get() {
-        return this.$store.state.titleAndDescriptionModule.title;
-      },
-      set(value) {
-        this.$store.commit('titleAndDescriptionModule/updateTitle', value);
-      },
-    },
-    description: {
-      get() {
-        return this.$store.state.titleAndDescriptionModule.description;
-      },
-      set(value) {
-        this.$store.commit(
-          'titleAndDescriptionModule/updateDescription',
-          value
-        );
-      },
-    },
-  },
-
-  components: {
-    sizeForm,
-    plotSizeForm,
-    PriceForm,
-    UsageForm,
-    buildingFactsForm,
-  },
-};
-</script>
+    const title=computed({
+     get(){
+       return store.state.titleAndDescriptionModule.title
+     },
+     set(value){
+        store.commit('titleAndDescriptionModule/updateTitle', value)
+     } 
+    })
+  const description=computed({
+ 
+   get(){
+     return store.state.titleAndDescriptionModule.description
+   },
+   set(value){
+     store.commit('titleAndDescriptionModule/updateDescription', value)
+   }
+  })
+  
+</script>    
 <style scoped>
 .subHeader {
   align-content: center;

@@ -11,14 +11,9 @@
    
   </v-container>
 </template>
-<script>
+<script setup>
 import RubricForm from './RubricForm.vue';
 import AddressForm from './AddressForm';
 
-export default {
-  components: {
-    RubricForm,
-    AddressForm,
-  },
-};
+
 </script>

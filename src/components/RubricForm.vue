@@ -9,14 +9,8 @@
           </v-card-title>
           <v-card-actions>
             <v-radio-group v-model="propertyTypeVuex">
-              <v-radio
-                v-for="propertyType in propertyTypes"
-                :key="propertyType"
-                :label="propertyType"
-                :value="propertyType"
-                dense
-                color="success"
-              >
+              <v-radio v-for="propertyType in propertyTypes" :key="propertyType" :label="propertyType"
+                :value="propertyType" dense color="success">
               </v-radio>
             </v-radio-group>
           </v-card-actions>
@@ -30,56 +24,38 @@
           </v-card-title>
           <v-card-actions>
             <v-radio-group v-model="targetVuex">
-              <v-radio
-                v-for="target in targets"
-                :key="target"
-                :label="target"
-                :value="target"
-                dense
-                color="success"
-              >
+              <v-radio v-for="target in targets" :key="target" :label="target" :value="target" dense color="success">
               </v-radio>
             </v-radio-group>
           </v-card-actions>
-        </v-card> 
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
-<script>
-//import rubricModule from '../store/modules/forms/rubric';
-export default {
-  /*
-  created: function () {
-    if (!this.$store.state.rubricModule) {
-      this.$store.registerModule('rubricModule', rubricModule);
-    }
-  },
-  */
+<script setup>
+import { useStore } from 'vuex';
+import { computed, ref } from 'vue';
+const store = useStore()
+const propertyTypes = ref(['Apartment', 'House', 'Shop', 'Plot']);
+const targets = ref(['Sell', 'Rent', 'Gage'])
 
-  data() {
-    return {
-      propertyTypes: ['Apartment', 'House', 'Shop', 'Plot'],
-      targets: ['Sell', 'Rent', 'Gage'],
-    };
+
+const propertyTypeVuex = computed({
+  get() {
+    return store.state.rubricModule.propertyType
   },
-  computed: {
-    propertyTypeVuex: {
-      get() {
-        return this.$store.state.rubricModule.propertyType;
-      },
-      set(val) {
-        this.$store.commit('rubricModule/updatePropertyType', val);
-      },
-    },
-    targetVuex: {
-      get() {
-        return this.$store.state.rubricModule.target;
-      },
-      set(val) {
-        this.$store.commit('rubricModule/updateTarget', val);
-      },
-    },
+  set(val) {
+    store.commit('rubricModule/updatePropertyType', val)
+  }
+})
+const targetVuex = computed({
+  get() {
+    return store.state.rubricModule.target;
   },
-};
+  set(val) {
+    store.commit('rubricModule/updateTarget', val)
+  }
+})
+
 </script>
