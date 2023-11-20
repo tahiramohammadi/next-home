@@ -11,9 +11,11 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import { userubricStore} from '../stores/rubricStore.js'
+import { useusageStore } from '../stores/usageStore.js';
 import { computed, ref } from 'vue';
-const store = useStore()
+const store = useusageStore()
+const rubricStore=userubricStore()
 const buildingUsages = ref(['For living', 'For business'])
 const plotUsages = ref(['Construction of living buildings',
   'Construction of business buildings',
@@ -21,7 +23,7 @@ const plotUsages = ref(['Construction of living buildings',
   'Sport fields',
   'Other uses'])
 
-const propertyType = computed(() => store.state.rubricModule.propertyType);
+const propertyType = computed(() => rubricStore.propertyType);
 
 const usages = computed(() => {
   if (propertyType === 'plot') {
@@ -31,12 +33,10 @@ const usages = computed(() => {
 
 });
 const usagesToStore = computed({
-  get() {
-    return store.state.usageModule.usages
-  },
-  set(val) {
-    store.commit('usageModule/updateUsages', val)
-  }
-})
+  get:() => store.usages,
 
+  set:(val)=>
+    store.updateUsages( val)
+  
+})
 </script>

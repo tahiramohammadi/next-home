@@ -58,66 +58,65 @@
 </template>
 <script setup>
 import { computed, ref } from 'vue';
-import { useStore } from 'vuex';
-const store = useStore()
+import { usebuildingFactsStore } from '../stores/buildingFactsStore.js';
+import { userubricStore } from '../stores/rubricStore.js';
+const store = usebuildingFactsStore()
+const rubricStore=userubricStore()
 const furnishments = ref(['fully furnished', 'partly furnished', 'Not furnished']);
 const availableFromMenu = ref(false)
 const availableToMenu = ref(false)
 
-const propertyType = computed(() => store.state.rubricModule.propertyType);
-const availableFromDisp = computed(() => store.state.buildingFactsModule.availableFrom);
-const availableToDisp = computed(() => store.state.buildingFactsModule.availableTo);
+const propertyType = computed(() => rubricStore.propertyType);
+const availableFromDisp = computed(() => store.availableFrom);
+const availableToDisp = computed(() => store.availableTo);
 
 const furnished = computed({
-  get() {
-    return store.state.buildingFactsModule.furnished;
-  },
-  set(val) {
-    store.commit('buildingFactsModule/updateFurnished', val);
-  }
+  get:() =>
+     store.furnished,
+
+  set:(val) =>
+    store.updateFurnished(val),
+  
 });
 const numberOfRooms = computed({
-  get() {
-    return store.state.buildingFactsModule.numberOfRooms;
-  },
-  set(val) {
-    store.commit('buildingFactsModule/updateNumberOfRooms', val);
-  }
+  get:()=>
+       store.numberOfRooms,
+  
+  set:(val)=>
+    store.updateNumberOfRooms(val)
+
 });
 const numberofFloors = computed({
-  get() {
-    return store.state.buildingFactsModule.numberofFloors;
-  },
-  set(val) {
-    store.commit('buildingFactsModule/updateNumberOfFloors', val);
-  }
+  get:() =>
+   store.numberOfFloors,
+
+  set:(val) =>
+    store.updateNumberOfFloors(val),
+
 });
 const floorNumber = computed({
-  get() {
-    return store.state.buildingFactsModule.floorNumber;
-  },
-  set(val) {
-    store.commit('buildingFactsModule/updateFloorNumber', val);
-  }
+  get:() =>store.floorNumber,
+
+  set:(val) =>
+    store.updateFloorNumber(val),
+
 });
 const availableFrom = computed({
-  get() {
-    return store.state.buildingFactsModule.availableFrom;
-  },
-  set(val) {
-    store.commit('buildingFactsModule/updateAvailableFrom', val);
-  }
+  get:() =>
+  store.availableFrom,
+
+  set:(val)=>
+    store.updateAvailableFrom(val),
+
 });
 
 const availableTo = computed({
-  get() {
-    return store.state.buildingFactsModule.availableTo;
-  },
-  set(val) {
-    store.commit('buildingFactsModule/updateAvailableTo', val);
-  }
+  get:() =>
+ store.availableTo,
+  
+  set:(val) =>
+    store.updateAvailableTo( val),
+  
 });
-
-
 </script>
 

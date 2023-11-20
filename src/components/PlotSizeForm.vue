@@ -12,26 +12,26 @@
   </v-row>
 </template>
 <script setup>
-import { useStore } from 'vuex';
-const store = useStore()
+import { usesizeStore } from '../stores/sizeStore.js';
+const store = usesizeStore()
 import { computed, ref } from 'vue'
 const sizeUnits = ref(['\u33A1', '\u33A2', 'Biswa', 'Biswasa', 'Girib'])
 
 const value = computed({
-  get() {
-    return store.state.plotSizeModule.size.value;
-  },
-  set(val) {
-    store.commit('plotSizeModule/updateValue', val)
-  }
+  get:()=>
+   store.size.value,
+  
+  set:(val)=>
+    store.updateValue( val)
+
 })
 const unit = computed({
-  get() {
-    return store.state.plotSizeModule.size.unit
-  },
-  set(val) {
-    store.commit('plotSizeModule/updateUnit', val)
-  }
+  get:()=>
+  store.size.unit,
+  
+  set:(val)=>
+    store.updateUnit( val)
+  
 })
 
 </script>

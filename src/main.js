@@ -6,15 +6,16 @@ import vuetify from './plugins/vuetify';
 import './registerServiceWorker';
 import { loadFonts } from './plugins/webfontloader';
 import '@mdi/font/css/materialdesignicons.css';
-import Axios from 'axios'; 
+import Axios from 'axios';
+import { createPinia } from 'pinia'
 
 loadFonts()
 
 
-Axios.defaults.baseURL = 'http://localhost:8089'; 
+Axios.defaults.baseURL = 'http://localhost:8089';
 
-  createApp(App)
-  .use(router)
-  .use(store)
-  .use(vuetify)
-  .mount('#app')
+createApp(App).use(createPinia())
+.use(router)
+.use(store)
+.use(vuetify)
+.mount('#app')

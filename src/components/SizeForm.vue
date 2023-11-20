@@ -19,26 +19,26 @@
 </template>
 
  <script>
-import {useStore} from 'vuex'
+import {usesizeStore} from '../stores/sizeStore.js'
 import {computed,  ref } from 'vue'
 export default{
   setup(){
-    const store=useStore()
+    const store=usesizeStore()
      const squareMeter=ref('\u33A1')
      function created(){
-      store.commit('sizeModule/updateUnit', squareMeter)
+      store.updateUnit( squareMeter)
      }
      const value =computed({
-        get(){
-             return store.state.sizeModule.size.value
-        },
-        set(val){
-            store.commit('sizeModule/updateValue', val)
-        }
+        get:()=> store.size.value,
+      
+        set:(val)=>
+            store.updateValue( val)
+    
       })
       
       return{
-      created
+      created,
+      value
     }
 
   },

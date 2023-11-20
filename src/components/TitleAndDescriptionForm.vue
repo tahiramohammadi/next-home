@@ -15,23 +15,21 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
-const store = useStore()
+import { usetitleAndDescriptionStore } from '../stores/titleAndDescriptionStore.js'
+const store = usetitleAndDescriptionStore()
 const title = computed({
-  get() {
-    return store.state.titleAndDescriptionModule.title
-  },
-  set(value) {
-    store.commit('titleAndDescriptionModule/updateTitle', value)
-  }
+  get: () => store.title,
+
+  set: (value) =>
+    store.updateTitle(value)
+
 })
 
 const description = computed({
-  get() {
-    return store.state.titleAndDescriptionModule.description
-  },
-  set(value) {
-    store.commit('titleAndDescriptionModule/updateDescription', value)
-  }
+  get: () => store.description,
+
+  set: (value) =>
+    store.updateDescription(value)
+
 })
 </script>

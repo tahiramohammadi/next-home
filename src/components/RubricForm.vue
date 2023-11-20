@@ -33,29 +33,33 @@
     </v-row>
   </v-container>
 </template>
-<script setup>
-import { useStore } from 'vuex';
+<script>
+import { userubricStore } from '../stores/rubricStore.js';
 import { computed, ref } from 'vue';
-const store = useStore()
-const propertyTypes = ref(['Apartment', 'House', 'Shop', 'Plot']);
-const targets = ref(['Sell', 'Rent', 'Gage'])
+export default {
+  setup() {
+    const store = userubricStore()
+    const propertyTypes = ref(['Apartment', 'House', 'Shop', 'Plot']);
+    const targets = ref(['Sell', 'Rent', 'Gage'])
+    const propertyTypeStore = computed({
+      get: () => store.propertyType,
+      set: (val) => store.updatePropertyType(val),
+
+    });
+    const targetStore = computed({
+      get: () => store.target,
+      set: (val) => store.updateTarget(val),
+    });
+
+    return {
+      propertyTypeStore,
+      targetStore,
+      propertyTypes,
+      targets
+    }
+  }
+}
 
 
-const propertyTypeVuex = computed({
-  get() {
-    return store.state.rubricModule.propertyType
-  },
-  set(val) {
-    store.commit('rubricModule/updatePropertyType', val)
-  }
-})
-const targetVuex = computed({
-  get() {
-    return store.state.rubricModule.target;
-  },
-  set(val) {
-    store.commit('rubricModule/updateTarget', val)
-  }
-})
 
 </script>

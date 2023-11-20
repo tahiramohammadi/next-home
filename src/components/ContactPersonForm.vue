@@ -27,42 +27,38 @@
   </v-container>
 </template>
 
-<script setup>
+<script>
 import { computed } from 'vue';
-import { useStore } from 'vuex';
-const store = useStore()
-const name = computed({
-  get() {
-    return store.state.contactPersonModule.name;
-  },
-  set(val) {
-    store.commit('contactPersonModule/updateName', val);
-  }
-})
+import { usecontactPersonStore } from '../stores/contactPersonStore.js';
+export default{
+  setup(){
+    const store = usecontactPersonStore()
+ const name = computed({
+  get:() => store.name,
+  set:(val) =>store.updateName(val),
+});
 const email = computed({
-  get() {
-    return store.state.contactPersonModule.email
-  },
-  set(val) {
-    store.commit('contactPersonModule/updateEmail', val)
-  }
+  get:()=>store.email,
+  set:(val) =>store.updateEmail(val) 
 })
 const phoneNumber = computed({
-  get() {
-    return store.state.contactPersonModule.phoneNumber;
-  },
-  set(val) {
-    store.commit('contactPersonModule/updatePhoneNumber', val)
-  }
-})
+  get:()=> store.phoneNumber,
+ 
+  set:(val)=>store.updatePhoneNumber(val),
+});
 const moreInformation = computed({
-  get() {
-    return store.state.contactPersonModule.moreInformation;
-  },
-  set(val) {
-    store.commit('contactPersonModule/updateMoreInformation', val)
-  }
-})
+  get:()=>store.moreInformaion,
+  set:(val)=>store.updateMoreInformation(val),
+});
 
+
+  return{
+    name,
+    email,
+    phoneNumber,
+    moreInformation,
+  }
+  }
+}
 </script>
 

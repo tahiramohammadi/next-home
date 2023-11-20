@@ -14,28 +14,33 @@
   </v-row>
 </template>
 
-<script setup>
-import { useStore } from 'vuex';
+<script>
+import { usepriceStore } from '../stores/priceStore.js';
 import {ref, computed } from 'vue'
-const store = useStore()
+export default{
+  setup(){
+const store = usepriceStore()
 const currencies= ref(['AFN', 'USD', 'EUR']);
-
 const amount = computed({
-  get() {
-    return store.state.priceModule.price.amount;
-  },
-  set(value) {
-    store.commit('priceModule/updateAmount', value);
-  }
-})
+  get:() =>
+  store.price.amount,
+
+  set:(value)=>store.updateAmount(value),
+});
 
 const currency = computed({
-  get() {
-    return store.state.priceModule.currency;
-  },
-  set(value) {
-    store.commit('priceModule/updateCurrency', value);
+  get:()=>
+    store.currency,
+  set:(value)=>store.updateCurrency(value),
+});
+
+    return{
+         currencies,
+         amount,
+         currency,
+
+    }
   }
-})
+}
 </script>
 

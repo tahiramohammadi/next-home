@@ -27,50 +27,33 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useStore } from 'vuex'
-const store = useStore()
+import {useaddressStore} from '../stores/addressStore.js'
+ const store=useaddressStore()
 const streetInput = computed({
-  get() {
-    return store.state.addressModule.address.street
-  },
-  set(value) {
-    store.commit('addressModule/updateStreet', value)
-  },
-
+  get:()=>store.address.street,
+  set:(value)=>store.updateStreet(value), 
 });
 const houseNrInput = computed({
-  get() {
-    return store.state.addressModule.address.houseNr;
-  },
-  set(value) {
-    store.commit('addressModule/updateHouseNr', value);
-  }
+  get:()=>store.address.houseNr,
+  set:(value)=>store.  updateHouseNr(value)
 })
-
-
 const zipCodeInput = computed({
-  get() {
-    return store.state.addressModule.address.zipCode;
-  },
-  set(value) {
-    store.commit('addressModule/updateZipCode', value);
-  }
+  get:()=>store.address.zipCode,
+  
+  set:(value)=> store.updateZipCode(value),
+  
 })
 const cityInput = computed({
-  get() {
-    return store.state.addressModule.address.city;
-  },
-  set(value) {
-    store.commit('addressModule/updateCity', value);
-  }
+  get:() => store.address.city,
+
+  set:(value)=>
+    store.updateCity( value),
+
 });
 const moreInformationInput = computed({
-  get() {
-    return store.state.addressModule.address.moreInformation;
-  },
-  set(value) {
-    store.commit('addressModule/updateMoreInformation', value);
-  }
-});
+  get:() => store.address.moreInformation,
 
+  set:(value) =>store.updateMoreInformation(value),
+
+});
 </script>
