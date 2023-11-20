@@ -71,6 +71,8 @@
 
 <script>
 import Axios from 'axios';
+import {usephotosStore} from '../stores/photosStore'
+const store =usephotosStore()
 export default {
   data() {
     return {
@@ -80,6 +82,7 @@ export default {
       photo: null,
       photos: [],
       formDatas: [],
+      store,
     };
   },
 
@@ -121,10 +124,9 @@ export default {
 
     postPhotos() {
       const path = '/photos';
-      let store = this.$store;
       let formDatas = this.formDatas;
       let contentPromises = [];
-      let photoLinks = this.$store.state.photosModule.photoLinks;
+      let photoLinks = this.store.photoLinks;
       let promises = [];
       formDatas.forEach(function () {
         promises.push(Axios.post(path, { summary: '' }));
@@ -135,7 +137,7 @@ export default {
           Axios.spread((...responses) => {
             responses.forEach(function (r) {
               let uri = r.data._links.self.href;
-              store.commit('photosModule/updatePhotoLinks', uri);
+              store.updatePhotoLinks(uri);
             
             });
             formDatas.forEach(function (fData, i) {
