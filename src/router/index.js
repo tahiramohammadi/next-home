@@ -1,6 +1,6 @@
 
 import { createRouter, createWebHistory } from 'vue-router'
-
+import InsertOffer from '../components/InsertOffer.vue'
 
 const routes = [
 
@@ -9,7 +9,7 @@ const routes = [
     name: 'InsertOffer',
     component: () =>
       import(
-        /*webpackChunkName: "insertOffer" */ '../components/InsertOffer.vue'
+'../components/InsertOffer.vue'
       ),
 
     children: [
@@ -18,7 +18,7 @@ const routes = [
         name: 'rubricForm',
         component: () =>
           import(
-            /*webpackChunkName: "insertOfferRubric" */ '../components/RubricAndAddressForm.vue'
+       '../components/RubricAndAddressForm.vue'
           ),
       },
       {
@@ -26,7 +26,7 @@ const routes = [
         name: 'keyFactsForm',
         component: () =>
           import(
-            /*webpackChunkName: "insertOfferKeyFacts" */ '../components/PropertyKeyFactsForm.vue'
+         '../components/PropertyKeyFactsForm.vue'
           ),
       },
       {
@@ -34,7 +34,7 @@ const routes = [
         name: 'contactPersonForm',
         component: () =>
           import(
-            /*webpackChunkName: "insertContactPerson" */ '../components/ContactPersonForm.vue'
+           '../components/ContactPersonForm.vue'
           ),
       },
       {
@@ -42,7 +42,7 @@ const routes = [
         name: 'mediaForm',
         component: () =>
           import(
-            /*webpackChunkName: "insertMedia" */ '../components/MediaForm.vue'
+       '../components/MediaForm.vue'
           ),
       },
     ],

@@ -3,12 +3,12 @@ export const usepropertyKeyFactsStore=defineStore('propertyKeyFactsStore',{
  
   getters:{
     getTarget(state, getters, rootState) {
-      return rootState.rubricModule.state.target;
+      return rootState.rubricStore.state.target;
     },
   
     getPropertyType(state, getters, rootState) {
       console.log(rootState);
-      return rootState.rubricModule.state.propertyType;
+      return rootState.rubricStore.state.propertyType;
     },
   },
 });
