@@ -6,7 +6,8 @@
         </v-text-field>
       </v-col>
     </v-row>
-    <v-row justify="center"> <v-subheader> Key facts </v-subheader></v-row>
+    <v-row justify="center">
+    Key facts </v-row>
     <v-divider> </v-divider>
 
 
@@ -17,11 +18,11 @@
     </SizeForm>
     <plotSizeForm v-if="propertyType === 'Plot' || propertyType === 'House'">
     </plotSizeForm>
-    <PriceForm> </PriceForm>
+    <PriceForm></PriceForm>
     <UsageForm> </UsageForm>
     <buildingFactsForm v-if="propertyType != 'Plot'"> </buildingFactsForm>
     <v-row justify="center">
-      <v-subheader> Object description </v-subheader>
+  Object description 
     </v-row>
     <v-divider> </v-divider>
 

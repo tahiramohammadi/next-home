@@ -26,7 +26,7 @@
       </v-col>
     </v-row>
     <v-row justify="center">
-      <v-subheader> Avilable dates </v-subheader>
+   Avilable dates 
     </v-row>
     <v-divider> </v-divider>
 

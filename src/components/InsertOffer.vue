@@ -1,8 +1,7 @@
 <template>
   <v-container>
-    <keep-alive>
-    <router-view> </router-view>
-    </keep-alive>
+        <router-view> </router-view>
+
     <v-divider> </v-divider>
     <FormNavigator> </FormNavigator>
   </v-container>

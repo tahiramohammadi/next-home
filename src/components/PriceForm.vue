@@ -7,18 +7,17 @@
 
     <v-col cols="4" md="3">
       <v-Select color="success" item-color="success" v-model="currency" 
-      :items="currencies" label="Currency" dense
+      :items="currencies" label="Currency" dense 
        varaint=" outlined">
     </v-Select>
     </v-col>
   </v-row>
 </template>
 
-<script>
+<script setup>
 import { usepriceStore } from '../stores/priceStore.js';
 import {ref, computed } from 'vue'
-export default{
-  setup(){
+
 const store = usepriceStore()
 const currencies= ref(['AFN', 'USD', 'EUR']);
 const amount = computed({
@@ -30,17 +29,10 @@ const amount = computed({
 
 const currency = computed({
   get:()=>
-    store.currency,
+    store.price.currency,
   set:(value)=>store.updateCurrency(value),
 });
 
-    return{
-         currencies,
-         amount,
-         currency,
 
-    }
-  }
-}
 </script>
 

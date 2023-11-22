@@ -2,11 +2,11 @@
   <v-container fluid>
     <v-divider></v-divider>
 
-    <v-subheader>Rubric</v-subheader>
+    <h4>Rubric</h4>
     <RubricForm> </RubricForm>
     <v-divider></v-divider>
 
-    <v-subheader>Address</v-subheader>
+    <h4>Address</h4>
     <AddressForm> </AddressForm>
    
   </v-container>

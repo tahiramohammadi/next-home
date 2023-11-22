@@ -8,7 +8,7 @@
             Type of the property
           </v-card-title>
           <v-card-actions>
-            <v-radio-group v-model="propertyTypeVuex">
+            <v-radio-group v-model="propertyType">
               <v-radio v-for="propertyType in propertyTypes" :key="propertyType" :label="propertyType"
                 :value="propertyType" dense color="success">
               </v-radio>
@@ -23,7 +23,7 @@
             Your target
           </v-card-title>
           <v-card-actions>
-            <v-radio-group v-model="targetVuex">
+            <v-radio-group v-model="target">
               <v-radio v-for="target in targets" :key="target" :label="target" :value="target" dense color="success">
               </v-radio>
             </v-radio-group>
@@ -41,21 +41,21 @@ export default {
     const store = userubricStore()
     const propertyTypes = ref(['Apartment', 'House', 'Shop', 'Plot']);
     const targets = ref(['Sell', 'Rent', 'Gage'])
-    const propertyTypeStore = computed({
+    const propertyType = computed({
       get: () => store.propertyType,
       set: (val) => store.updatePropertyType(val),
 
     });
-    const targetStore = computed({
+    const target = computed({
       get: () => store.target,
       set: (val) => store.updateTarget(val),
     });
 
     return {
-      propertyTypeStore,
-      targetStore,
       propertyTypes,
-      targets
+      targets,
+      propertyType,
+      target
     }
   }
 }

@@ -1,6 +1,7 @@
-import { defineStore } from 'pinia';
+ import { defineStore } from 'pinia';
 export const userubricStore=defineStore('rubricStore',{
   state: () => ({ target: '', propertyType: '', propertyHref: null}),
+  
   actions:{
    updateTarget( value) {
      this.target = value;
