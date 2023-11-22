@@ -7,6 +7,6 @@
   </v-container>
 </template>
 <script setup>
-import FormNavigator from './FormNavigator';
+import FormNavigator from './FormNavigator.vue';
 
 </script>

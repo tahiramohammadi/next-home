@@ -2,14 +2,13 @@
   <v-app>
     <div>
       <v-app-bar dense color="#000000" app>
-        <v-img
+        <img
           contain
-          src="./assets/logo.png"
+          :src="images"
           max-hight="120"
           max-width="120"
-        ></v-img>
+        />
       </v-app-bar>
-      
     </div>
     <v-main>
       <router-view/>
@@ -17,9 +16,6 @@
   </v-app>
 </template>
 
-<script>
-
-export default {
-  name: 'App',
-}
+<script setup>
+   import images from '@/assets/logo.png'
 </script>

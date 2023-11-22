@@ -13,7 +13,7 @@
 </template>
 <script setup>
 import RubricForm from './RubricForm.vue';
-import AddressForm from './AddressForm';
+import AddressForm from './AddressForm.vue';
 
 
 </script>
