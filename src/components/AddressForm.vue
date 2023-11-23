@@ -2,23 +2,23 @@
   <v-container fluid>
     <v-row justify="center" dense="">
       <v-col cols="12" md="5">
-        <v-text-field dense outlined v-model="streetInput" label="Street"></v-text-field>
+        <v-text-field dense  variant="outlined" v-model="streetInput" label="Street"></v-text-field>
       </v-col>
       <v-col cols="12" md="3">
-        <v-text-field dense v-model="houseNrInput" label="House number" outlined></v-text-field>
+        <v-text-field dense v-model="houseNrInput" label="House number" variant="outlined"></v-text-field>
       </v-col>
     </v-row>
     <v-row dense justify="center">
       <v-col cols="12" md="3">
-        <v-text-field dense v-model="zipCodeInput" label="Zip code" outlined></v-text-field>
+        <v-text-field dense v-model="zipCodeInput" label="Zip code" variant="outlined"></v-text-field>
       </v-col>
       <v-col cols="12" md="5">
-        <v-text-field dense v-model="cityInput" label="City" outlined></v-text-field>
+        <v-text-field dense v-model="cityInput" label="City" variant="outlined"></v-text-field>
       </v-col>
     </v-row>
     <v-row dense justify="center">
       <v-col cols="12" md="8">
-        <v-textarea v-model="moreInformationInput" label="More Information" aria-multiline="2" auto-grow outlined dense
+        <v-textarea v-model="moreInformationInput" label="More Information" aria-multiline="2" auto-grow variant="outlined" dense
           rows="3"></v-textarea>
       </v-col>
     </v-row>
