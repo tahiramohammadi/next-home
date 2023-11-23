@@ -3,7 +3,7 @@
     <v-spacer> </v-spacer>
     <v-row justify="center">
       <v-col cols="12" md="4">
-        <v-card flat outlined shaped="">
+        <v-card flat variant="outlined" shaped="">
           <v-card-title>
             Type of the property
           </v-card-title>
@@ -18,7 +18,7 @@
       </v-col>
 
       <v-col cols="12" md="4">
-        <v-card flat outlined shaped>
+        <v-card flat variant="outlined" shaped>
           <v-card-title>
             Your target
           </v-card-title>

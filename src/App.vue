@@ -1,15 +1,6 @@
 <template>
   <v-app>
-    <div>
-      <v-app-bar dense color="#000000" app>
-        <img
-          contain
-          :src="images"
-          max-hight="120"
-          max-width="120"
-        />
-      </v-app-bar>
-    </div>
+         <navBar/>
     <v-main>
       <router-view/>
     </v-main>
@@ -17,5 +8,5 @@
 </template>
 
 <script setup>
-   import images from '@/assets/logo.png'
+      import navBar from './components/common/navBar.vue';
 </script>

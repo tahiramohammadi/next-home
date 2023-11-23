@@ -3,7 +3,7 @@
     <v-row justify="start">
       <v-col cols="12" md="5">
         <v-select v-model="usagesToStore" :items="usages" multiple label="Recomended usage" dense item-color="success"
-          color="success" chips outlined :menu-props="{ offsetY: true }">
+          color="success" chips variant="outlined" :menu-props="{ offsetY: true }">
         </v-select>
       </v-col>
     </v-row>

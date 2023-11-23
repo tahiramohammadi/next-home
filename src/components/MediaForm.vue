@@ -34,7 +34,7 @@
                           :class="{ 'show-btns': hover }"
                           color="transparent"
                           icon
-                          outlined
+                          variant="outlined"
                           @click="deletePhoto(i)"
                         >
                           <v-icon

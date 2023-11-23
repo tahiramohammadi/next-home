@@ -1,7 +1,6 @@
 
 import { createRouter, createWebHistory } from 'vue-router'
-
-
+import SignUp from '@/@pages/signupForm.vue';
 const routes = [
 
   {
@@ -47,6 +46,11 @@ const routes = [
       },
     ],
   },
+  {
+     path:'/signUp', 
+     name:'signUp',
+     component:SignUp
+  }
 ];
 
 const router = createRouter({

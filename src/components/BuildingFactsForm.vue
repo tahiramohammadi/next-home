@@ -3,25 +3,25 @@
     <v-row justify="start">
       <v-col cols="12" md="5">
         <v-select v-model="furnished" :items="furnishments" label="Furnishment" dense color="success" item-color="success"
-          :menu-props="{ offsetY: true }" outlined>
+          :menu-props="{ offsetY: true }" variant="outlined">
         </v-select>
       </v-col>
     </v-row>
     <v-row v-if="propertyType != 'Shop'" justify="start">
       <v-col cols="12" md="5">
-        <v-text-field outlined dense flat v-model="numberOfRooms" label="Number of Rooms " color="success">
+        <v-text-field variant="outlined" dense flat v-model="numberOfRooms" label="Number of Rooms " color="success">
         </v-text-field>
       </v-col>
     </v-row>
     <v-row justify="start" v-if="propertyType === 'House'">
       <v-col cols="12" md="5">
-        <v-text-field outlined dense flat v-model="numberofFloors" label="Number of floors" color="success">
+        <v-text-field variant="outlined" dense flat v-model="numberofFloors" label="Number of floors" color="success">
         </v-text-field>
       </v-col>
     </v-row>
     <v-row justify="start" v-if="propertyType != 'House'">
       <v-col cols="12" md="5">
-        <v-text-field outlined dense flat v-model="floorNumber" label="Floor Number" color="success">
+        <v-text-field variant="outlined" dense flat v-model="floorNumber" label="Floor Number" color="success">
         </v-text-field>
       </v-col>
     </v-row>

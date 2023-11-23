@@ -10,7 +10,8 @@ export default defineConfig({
         },
       },
   plugins: [vue(),
-    vuetify()
+    vuetify(),
+  
 
 ]
 })

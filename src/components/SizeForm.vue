@@ -2,7 +2,7 @@
   <v-row justify="start">
     <v-col cols="8" md="5">
       <v-text-field
-        outlined
+      variant="outlined"
         dense
         flat
         v-model="value"

@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row justify="start">
       <v-col cols="12" md="3">
-        <v-text-field dense flat v-model="title" label="Title" color="success" outlined>
+        <v-text-field dense flat v-model="title" label="Title" color="success" variant="outlined">
         </v-text-field>
       </v-col>
     </v-row>
@@ -28,7 +28,7 @@
 
     <v-row justify="start">
       <v-col cols="12" md="10">
-        <v-textarea dense flat v-model="description" label="Description" color="success" aria-multiline="8" outlined
+        <v-textarea dense flat v-model="description" label="Description" color="success" aria-multiline="8" variant="outlined"
           placeholder="Describe the propertty. provide more detail about property, its location and etc... ">
         </v-textarea>
       </v-col>
