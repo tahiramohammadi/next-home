@@ -8,7 +8,6 @@ import { usephotosStore } from '../stores/photosStore';
 import { usepropertyKeyFactsStore } from '../stores/propertyKeyFactsStore';
 import { usesizeStore } from '../stores/sizeStore';
 import { usetitleAndDescriptionStore } from '../stores/titleAndDescriptionStore';
-import { useUserStore } from '../stores/UserStore';
 const pinia = createPinia(
     strict= process.env.NODE_ENV !== 'production',
 );
@@ -22,6 +21,6 @@ pinia.use(usephotosStore);
 pinia.use(usepropertyKeyFactsStore);
 pinia.use(usesizeStore);
 pinia.use(usetitleAndDescriptionStore);
-pinia.use(useUserStore)
+
 
 export default pinia

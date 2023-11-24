@@ -3,48 +3,53 @@
     <v-col cols="12">
       <v-card width="700" class="mx-auto mt-8 green-lighten-4" rounded elevation="6">
         <h2 class="ma-6 justify-center d-flex">User Registration</h2>
-        <v-form ref="form" @submit.prevent="onSubmit">
+        <v-form ref="form" @submit.prevent="() => {}">
 
-          <v-text-field v-model="name" color="success" 
+          <v-text-field v-model="payload.username" color="success" 
                   prepend-inner-icon="mdi-account" 
                  variant="outlined" 
-                :rules="[v => !!v || 'name is required']" label="Name"
+                 type="text"
+                :rules="[requiredValidator]" label="Username"
                   required></v-text-field>
 
-          <v-text-field v-model="email"
+          <v-text-field v-model="payload.email"
              prepend-inner-icon="mdi-email" 
-             :rules="[v => !!v || 'email is required']" 
+             type="email"
+             :rules="[emailValidator,requiredValidator]" 
              label="Email" color="success" variant="outlined"
             required></v-text-field>
       
-          <v-text-field v-model="password"  
+          <v-text-field v-model="payload.password"  
            @click:append-inner="visible = !visible"
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
         :type="visible ? 'text' : 'password'" 
          prepend-inner-icon="mdi-lock" color="success"
-          :rules="[v => !!v || 'password is required']"
+          :rules="[ requiredValidator, passwordValidator ]"
            label="Password" variant="outlined"
             required></v-text-field>
 
-          <v-text-field v-model="confirmpwd"   
+
+          <v-text-field v-model="payload.confirmpwd"   
            @click:append-inner="visible = !visible" 
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
             :type="visible ? 'text' : 'password'" 
                prepend-inner-icon="mdi-lock"
-             :rules="[v => !!v || 'confirm pwd is required']" 
+             :rules="[ requiredValidator, confirmedValidator ]" 
                 label="Confirm Password" color="success" variant="outlined"
             required></v-text-field>
               <!-- <vue-tel-input v-model="phone"  mode="international" :rules="[v => !!v || 'phone is required']" label="Phone Number"  classs="ma-8" required  color="success" variant="outlined"></vue-tel-input> -->
-              <v-text-field v-model="phone" 
+              <v-text-field v-model="payload.phone" 
                   prepend-inner-icon="mdi-phone" 
-                  :rules="[v => !!v || 'phone is required']" 
+                  type="number"
+                  :rules="[ requiredValidator ]" 
                   label="Phone Number" required  color="success"
                    variant="outlined"></v-text-field>
 
               <v-card-action class="mt-12">
+                <VSpacer />
             <v-btn :loading="loading" color="success"
              size="large" type="submit" variant="elevated"
-              class="me-4">
+              class="me-4" @click="submit">
               Sign Up
             </v-btn>
             <v-btn color="error" size="large"
@@ -59,26 +64,50 @@
   </v-row>
 </template>
 <script setup>
-import {ref, computed } from 'vue'
+import {ref } from 'vue'
+import axios from 'axios'
+import { emailValidator, requiredValidator,  passwordValidator,confirmedValidator } from "@/utils/validators.js";
+import {toast} from 'vue3-toastify'
 const visible=ref(false)
-import { usecontactPersonStore } from '../stores/contactPersonStore.js';
-const store = usecontactPersonStore()
- const name = computed({
-  get:() => store.name,
-  set:(val) =>store.updateName(val),
+const loading = ref(false);
+const form = ref();
+const payload = ref({
+  username: null,
+  email: null,
+  password: null,
+  confirmpwd: null,
+  phone:null,
 });
-const email = computed({
-  get:()=>store.email,
-  set:(val) =>store.updateEmail(val) 
-})
-const password= computed({
-  get:()=> store.password,
- 
-  set:(val)=>store.updatePassword(val),
-});
-const phone= computed({
-  get:()=>store.phone,
-  set:(val)=>store.updatePhoneN(val),
-});
+
+const reset= () => {
+  payload.value = {
+    username: null,
+  email: null,
+  password: null,
+  confirmpwd: null,
+  phone:null,
+  };
+
+};
+// methods
+
+
+const submit = async () => {
+  try {
+    const validate = await form.value.validate();
+    if (!validate.valid) {
+      console.log("error validation");
+      return;
+    }
+    loading.value = true;
+   const res = await axios.post("/users", payload.value);
+   console.log(res.value)
+    reset();
+    toast.success("You are successfully registered!!")
+  } catch (error) {
+    toast.error("you are not registered", error);
+  }
+  loading.value = false;
+};
 
 </script>
