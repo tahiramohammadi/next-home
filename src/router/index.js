@@ -51,6 +51,7 @@ const routes = [
      path:'/signUp', 
      name:'signUp',
      component:SignUp
+    
   },
   {
     path:'/loginForm',
