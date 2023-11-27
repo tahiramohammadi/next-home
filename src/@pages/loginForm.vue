@@ -1,49 +1,61 @@
 <template>
-     <!-- <div class="bg-green-lighten-4" max-height="100vh"> -->
+  <v-container>
     <v-row class="justify-center align-center">
-      <v-col cols="12">
-        <v-card width="500" class="mx-auto mt-8 green-lighten-4 rounded-shaped" elevation="9">
-          <h2 class="ma-6 justify-center d-flex">WelCome to Next Home</h2>
-          <v-form ref="form" @submit.prevent="onSubmit">
+      <v-col cols="12" sm="10">
+        <v-card class="evelation-6 mt-10">
+          <v-window v-model="step">
+            <v-wnidow-item :value="1">
+              <v-row>
+                <v-col cols="12" sm="6"  class="bg-light-green-accent-2 rounded-bl-xl">
+                       <div style="text-align:center;"  class="mt-16" >
+                         <v-card-text>
+                          <h3 class="text-bold">New on our platform?</h3>
+                          <v-btn to="/signUp" class="ms-2" variant="" color="black">
+                          Create an account
+                          </v-btn>
+                         </v-card-text>
+                      </div>
+                    </v-col>
+                <v-col cols="12" sm="6">
+                  <v-card-text class="mt-12">
+                    <h4 class="text-center">Welcome to the Next Home</h4>
+                    <v-form ref="form" @submit.prevent="onSubmit">
+                      <v-text-field v-model="payload.email" prepend-inner-icon="mdi-email" type="email"
+                        :rules="[requiredValidator]" label="Email" color="success"  class="mt-12" variant="outlined"
+                        required></v-text-field>
 
-            <v-text-field v-model="payload.email" prepend-inner-icon="mdi-email" type="email" :rules="[requiredValidator]"
-              label="Email" color="success" variant="outlined" required></v-text-field>
-
-            <v-text-field v-model="payload.password" @click:append-inner="visible = !visible"
-              :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'" :type="visible ? 'text' : 'password'"
-              prepend-inner-icon="mdi-lock" color="success" :rules="[requiredValidator, passwordValidator]"
-              label="Password" variant="outlined" required></v-text-field>
-            <div class="d-flex align-center flex-wrap justify-space-between mt-1 mb-4">
-              <VCheckbox v-model="payload.remember" label="Remember me" />
-              <a class="text-light-green-accent-3 ms-2 mb-1">
-                Forgot Password?
-              </a>
-            </div>
-              <v-btn :loading="loading" color="success" block size="large" type="submit" name="submit"
-                class="me-4  rounded-pill" variant="outlined">
-                Sign In
-              </v-btn>
-              <VCol cols="12" class="text-center text-base">
-                <span>New on our platform?</span>
-                <router-link to="/signUp" class="text-light-green-accent-3 ms-2">
-                  Create an account
-                </router-link>
-              </VCol>
-    
-
-
-          </v-form>
+                      <v-text-field v-model="payload.password" @click:append-inner="visible = !visible"
+                        :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'" :type="visible ? 'text' : 'password'"
+                        prepend-inner-icon="mdi-lock" color="success" :rules="[requiredValidator, passwordValidator]"
+                        label="Password" variant="outlined" required></v-text-field>
+                      <div class="d-flex align-center flex-wrap justify-space-between mt-1 mb-4">
+                        <VCheckbox v-model="payload.remember" label="Remember me" />
+                        <a class="text-light-green-accent-3 ms-2 mb-1">
+                          Forgot Password?
+                        </a>
+                      </div>
+                      <v-btn :loading="loading" color="success" block size="large" type="submit" name="submit"
+                        class="me-4  rounded-pill" variant="outlined">
+                        Sign In
+                      </v-btn>
+                    </v-form>
+                  </v-card-text>
+                </v-col>
+            
+              </v-row>
+            </v-wnidow-item>
+          </v-window>
         </v-card>
       </v-col>
     </v-row>
-  <!-- </div> -->
+  </v-container>
 </template>
 <script setup >
 import { ref } from 'vue'
 import axios from 'axios'
 import { requiredValidator, passwordValidator } from "@/utils/validators.js";
 import { toast } from 'vue3-toastify'
-import {useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/authStore';
 const authStore = useAuthStore()
 const router = useRouter()
@@ -90,4 +102,12 @@ const onSubmit = () => {
 
 </script>
   
-  
+<style scoped>
+ .rounded-bl-xl {
+  border-bottom-right-radius: 300px !important;
+}
+
+ .rounded-be-xl {
+
+}
+</style>

@@ -5,6 +5,9 @@ export const usephotosStore=defineStore('photosStore',{
     photoLinks: [],
   }),
    actions:{
+        selectImage(photo){
+          this.photoLinks=photo
+        },
     updatePhotoLinks(value) {
    this.photoLinks.push(value);
     },
