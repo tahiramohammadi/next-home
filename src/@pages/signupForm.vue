@@ -1,13 +1,24 @@
 <template>
   <v-row class="justify-center align-center">
     <v-col cols="12">
-      <v-card width="700" class="mx-auto mt-8 green-lighten-4" rounded elevation="6">
-        <h2 class="ma-6 justify-center d-flex">User Registration</h2>
-        <v-form ref="form" @submit.prevent="() => {}">
-
-          <v-text-field v-model="payload.username" color="success" 
+      <v-card width="800" class="mx-auto mt-8" rounded elevation="6">
+      
+        <v-row>
+           <v-col cols="12" sm="5" class="bg-teal-accent-3">
+            <h1 class="  mt-16 text-center text-white">WelCome Back!</h1>
+            <div class="justify-center d-flex">
+              <span class="text-white text-center mt-6">You Already have an Account?</span>
+            </div>
+            <div class="justify-center d-flex">
+              <v-btn class="text-white mt-3" variant="outlined" to="/loginForm" rounded>Sign In </v-btn>
+            </div>
+           </v-col>
+          <v-col cols="12" sm="7">
+            <h1 class="ma-14 justify-center d-flex text-teal-accent-3 " >Create Account</h1>
+            <v-form ref="form" @submit.prevent="() => {}">
+          <v-text-field v-model="payload.username" color="teal-accent-3" 
                   prepend-inner-icon="mdi-account" 
-                 variant="outlined" 
+                 variant="underlined" 
                  type="text"
                 :rules="[requiredValidator]" label="Username"
                   required></v-text-field>
@@ -16,7 +27,7 @@
              prepend-inner-icon="mdi-email" 
              type="email"
              :rules="[emailValidator,requiredValidator]" 
-             label="Email" color="success" variant="outlined"
+             label="Email" color="teal-accent-3"   variant="underlined" 
             required></v-text-field>
       
           <v-text-field v-model="payload.password"  
@@ -28,9 +39,9 @@
             : 'mdi-eye-outline'
         "
         @click:append-inner="isPasswordVisible = !isPasswordVisible" 
-         prepend-inner-icon="mdi-lock" color="success"
+         prepend-inner-icon="mdi-lock" color="teal-accent-3"
           :rules="[ requiredValidator, passwordValidator ]"
-           label="Password" variant="outlined"
+           label="Password"   variant="underlined" 
             required></v-text-field>
 
 
@@ -40,31 +51,37 @@
             :type="visible ? 'text' : 'password'" 
                prepend-inner-icon="mdi-lock"
              :rules="[ requiredValidator, passwordValidator ]" 
-                label="Confirm Password" color="success" variant="outlined"
+                label="Confirm Password" color="teal-accent-3"   variant="underlined" 
             required></v-text-field>
               <!-- <vue-tel-input v-model="phone"  mode="international" :rules="[v => !!v || 'phone is required']" label="Phone Number"  classs="ma-8" required  color="success" variant="outlined"></vue-tel-input> -->
               <v-text-field v-model="payload.phone" 
                   prepend-inner-icon="mdi-phone" 
                   type="number"
                   :rules="[ requiredValidator ]" 
-                  label="Phone Number" required  color="success"
-                   variant="outlined"></v-text-field>
+                  label="Phone Number" required  color="teal-accent-3"
+                  variant="underlined" ></v-text-field>
               
     
-            
-            <v-btn :loading="loading" color="success"
+               <div  class="ma-4 justify-center d-flex">
+                <v-btn :loading="loading" class="bg-teal-accent-3  text-white"
              size="large" type="submit" variant="elevated"
-              class="me-4" @click="submit">
+            right @click="submit" rounded>
               Sign Up
             </v-btn>
+               </div>
+          
 
-            <v-btn class="bg-grey-lighten-1" size="large"
+            <!-- <v-btn class="bg-grey-lighten-1" size="large"
              @click="reset" type="reset" variant="elevated" >
               Reset
-            </v-btn>
+            </v-btn> -->
         
 
         </v-form>
+          </v-col>
+        </v-row>
+
+       
       </v-card>
     </v-col>
   </v-row>

@@ -7,7 +7,7 @@
         flat
         v-model="value"
         label="Size"
-        color="success"
+        color="#1DE9B6"
       >
       </v-text-field>
     </v-col>

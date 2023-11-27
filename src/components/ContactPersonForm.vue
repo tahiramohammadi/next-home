@@ -2,25 +2,25 @@
   <v-container>
     <v-card row wrap justify-space-around>
 
-        <v-text-field variant="outlined" dense flat v-model="name" label="Name">
+        <v-text-field variant="outlined" dense flat v-model="name" label="Name" color="#1DE9B6">
         </v-text-field>
 
     </v-card>
     <v-card row wrap justify-space-around>
 
-        <v-text-field variant="outlined" dense flat v-model="email" label="Email address">
+        <v-text-field variant="outlined" dense flat v-model="email" label="Email address"  color="#1DE9B6">
         </v-text-field>
     
     </v-card>
     <v-card row wrap justify-space-around>
   
-        <v-text-field variant="outlined" dense flat v-model="phoneNumber" label="Phone number">
+        <v-text-field variant="outlined" dense flat v-model="phoneNumber" label="Phone number"  color="#1DE9B6">
         </v-text-field>
   
     </v-card>
     <v-card row wrap justify-space-around>
  
-        <v-textarea auto-grow variant="outlined" rows="3" v-model="moreInformation" label="More information">
+        <v-textarea auto-grow variant="outlined" rows="3" v-model="moreInformation" label="More information"  color="#1DE9B6">
         </v-textarea>
   
     </v-card>

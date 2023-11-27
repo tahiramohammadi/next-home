@@ -1,12 +1,12 @@
 <template>
   <v-row justify="start">
-    <v-col cols="8" md="5">
-      <v-text-field variant="outlined" dense flat v-model="amount" label="Price" color="success">
+    <v-col cols="8" md="6">
+      <v-text-field variant="outlined" dense flat v-model="amount" label="Price" color="#1DE9B6">
       </v-text-field>
     </v-col>
 
     <v-col cols="4" md="3">
-      <v-Select color="success" item-color="success" v-model="currency" 
+      <v-Select color="#1DE9B6" item-color="success" v-model="currency" 
       :items="currencies" label="Currency" dense 
        variant="outlined">
     </v-Select>

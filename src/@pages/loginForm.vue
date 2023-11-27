@@ -6,36 +6,36 @@
           <v-window v-model="step">
             <v-wnidow-item :value="1">
               <v-row>
-                <v-col cols="12" sm="6"  class="bg-light-green-accent-2 rounded-bl-xl">
-                       <div style="text-align:center;"  class="mt-16" >
+                <v-col cols="12" sm="6"  class="bg-teal-accent-3  rounded-bl-xl">
+                       <div style="text-align:center;"  class="mt-14 pt-16" >
                          <v-card-text>
-                          <h3 class="text-bold">New on our platform?</h3>
-                          <v-btn to="/signUp" class="ms-2" variant="" color="black">
-                          Create an account
+                          <h3 class="text-bold text-white">New on our platform?</h3>
+                          <v-btn to="/signUp" class="ms-2 text-white" variant="" color="black">
+                            Sign Up
                           </v-btn>
                          </v-card-text>
                       </div>
                     </v-col>
                 <v-col cols="12" sm="6">
                   <v-card-text class="mt-12">
-                    <h4 class="text-center">Welcome to the Next Home</h4>
+                    <h2 class="text-center text-teal-accent-3 text-bold fs-8">WELCOME TO THE NEXT HOME</h2>
                     <v-form ref="form" @submit.prevent="onSubmit">
                       <v-text-field v-model="payload.email" prepend-inner-icon="mdi-email" type="email"
-                        :rules="[requiredValidator]" label="Email" color="success"  class="mt-12" variant="outlined"
+                        :rules="[requiredValidator]" label="Email"   color="teal-accent-3" class="mt-12" variant="outlined"
                         required></v-text-field>
 
                       <v-text-field v-model="payload.password" @click:append-inner="visible = !visible"
                         :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'" :type="visible ? 'text' : 'password'"
-                        prepend-inner-icon="mdi-lock" color="success" :rules="[requiredValidator, passwordValidator]"
+                        prepend-inner-icon="mdi-lock"  color="teal-accent-3" :rules="[requiredValidator, passwordValidator]"
                         label="Password" variant="outlined" required></v-text-field>
                       <div class="d-flex align-center flex-wrap justify-space-between mt-1 mb-4">
                         <VCheckbox v-model="payload.remember" label="Remember me" />
-                        <a class="text-light-green-accent-3 ms-2 mb-1">
+                        <a class="text-teal-accent-3 ms-2 mb-1 text-white">
                           Forgot Password?
                         </a>
                       </div>
-                      <v-btn :loading="loading" color="success" block size="large" type="submit" name="submit"
-                        class="me-4  rounded-pill" variant="outlined">
+                      <v-btn :loading="loading" block size="large" type="submit" name="submit"
+                        class="me-4 bg-teal-accent-3  text-white rounded-pill" variant="outlined">
                         Sign In
                       </v-btn>
                     </v-form>
@@ -107,7 +107,5 @@ const onSubmit = () => {
   border-bottom-right-radius: 300px !important;
 }
 
- .rounded-be-xl {
 
-}
 </style>
