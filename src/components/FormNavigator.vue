@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col>
-      <v-btn v-show="!isFirst()" text color="success" @click="navigatePrevious">
+      <v-btn v-show="!isFirst()" text color="#1DE9B6" class="text-white" @click="navigatePrevious">
         Previous
       </v-btn>
     </v-col>
@@ -9,7 +9,7 @@
     <v-col> </v-col>
     <v-col> </v-col>
     <v-col>
-      <v-btn text color="success" @click="navigateNext">
+      <v-btn text color="#1DE9B6" @click="navigateNext" class="text-white">
         {{ nextButtonText() }}</v-btn
       >
     </v-col>

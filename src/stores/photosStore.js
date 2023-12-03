@@ -5,9 +5,17 @@ export const usephotosStore=defineStore('photosStore',{
     photoLinks: [],
   }),
    actions:{
+    // setImageUrl(photoLinks) {
+    //   this.photoLinks = photoLinks;
+    // },
+    // getImageUrl() {
+    //   return this.photoLinks;
+    // },
     updatePhotoLinks(value) {
    this.photoLinks.push(value);
     },
+
+
     deletePhotoLink(i){
       this.photoLinks.splice(i, 1);
     }

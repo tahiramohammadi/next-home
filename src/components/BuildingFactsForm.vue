@@ -2,26 +2,26 @@
   <div>
     <v-row justify="start">
       <v-col cols="12" md="5">
-        <v-select v-model="furnished" :items="furnishments" label="Furnishment" dense color="success" item-color="success"
+        <v-select v-model="furnished" :items="furnishments" label="Furnishment" dense color="#1DE9B6" 
           :menu-props="{ offsetY: true }" variant="outlined">
         </v-select>
       </v-col>
     </v-row>
     <v-row v-if="propertyType != 'Shop'" justify="start">
       <v-col cols="12" md="5">
-        <v-text-field variant="outlined" dense flat v-model="numberOfRooms" label="Number of Rooms " color="success">
+        <v-text-field variant="outlined" dense flat v-model="numberOfRooms" label="Number of Rooms " color="#1DE9B6">
         </v-text-field>
       </v-col>
     </v-row>
     <v-row justify="start" v-if="propertyType === 'House'">
       <v-col cols="12" md="5">
-        <v-text-field variant="outlined" dense flat v-model="numberofFloors" label="Number of floors" color="success">
+        <v-text-field variant="outlined" dense flat v-model="numberofFloors" label="Number of floors" color="#1DE9B6">
         </v-text-field>
       </v-col>
     </v-row>
     <v-row justify="start" v-if="propertyType != 'House'">
       <v-col cols="12" md="5">
-        <v-text-field variant="outlined" dense flat v-model="floorNumber" label="Floor Number" color="success">
+        <v-text-field variant="outlined" dense flat v-model="floorNumber" label="Floor Number" color="#1DE9B6">
         </v-text-field>
       </v-col>
     </v-row>
@@ -36,7 +36,7 @@
         <v-menu v-model="availableFromMenu" :close-on-content-click="false" :offset-y="true" max-width="280px"
           min-width="280px">
           <template v-slot:activator="{ on}">
-            <v-text-field label="Avilable from" v-model="availableFrom" type="date" :value="availableFromDisp" v-on="on"  color="green lighten-1">
+            <v-text-field label="Avilable from" v-model="availableFrom" color="#1DE9B6" type="date" :value="availableFromDisp" v-on="on">
             </v-text-field>
           </template>
         </v-menu>
@@ -48,7 +48,7 @@
         <v-menu :offset-y="true" v-model="availableToMenu" :close-on-content-click="false" max-width="280px"
           min-width="280px">
           <template v-slot:activator="{ on}">
-            <v-text-field label="Avilable to" type="date" v-model="availableTo" :value="availableToDisp" v-on="on"  color="success">
+            <v-text-field label="Avilable to" type="date" color="#1DE9B6" v-model="availableTo" :value="availableToDisp" v-on="on">
             </v-text-field>
           </template>
         </v-menu>
