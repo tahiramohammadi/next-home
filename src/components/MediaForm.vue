@@ -1,11 +1,12 @@
 <template>
+
     <v-container fluid>
       <v-row justify="center">
         <v-col md="6" sm="6" xs="6"> </v-col>
         <v-col md="1" sm="1" xs="1">
           <v-file-input
             prepend-icon="mdi-camera"
-            
+            variant="plain"
             success
             v-model="submitFile"
           ></v-file-input>
@@ -15,8 +16,8 @@
 
       <v-divider></v-divider>
       <v-row  justify="center">
-      <template v-for="(pic, i) in photos">
-          <v-col  v-if="photos.length > 0"  :key="i"  cols="12" md="5">
+      <template   v-if="photos.length > 0">
+          <v-col  v-for="(pic, i) in photos"  :key="i" cols="12" md="5">
             <v-hover v-slot:default="{ hover }">
               <v-card
                 :elevation="hover ? 12 : 2"
@@ -70,6 +71,7 @@
 </template>
 
 <script>
+ 
 import Axios from 'axios';
 import {usephotosStore} from '../stores/photosStore'
 const store =usephotosStore()
@@ -169,9 +171,7 @@ export default {
 };
 </script>
 <style scoped>
-  #fileInput {
-  display: none;
-}
+
 .my-8 {
   margin-top: 4rem;
   margin-bottom: 4rem;

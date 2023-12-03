@@ -1,5 +1,6 @@
 import Axios from 'axios';
-import photos from '../store/modules/forms/photos';
+import {usephotosStore} from '../stores/photosStore';
+const imageStore=usephotosStore()
 
 const path = '/photos';
 export function createPhoto(photo) {
@@ -13,7 +14,7 @@ export function createPhoto(photo) {
     }*/
   ).then((response) => {
     const uri = response.data._links.self.href;
-    photos.mutations.updatePhotoLinks(uri); 
+    photos.imageStore.updatePhotoLinks(uri); 
     console.log(uri);
     console.log(photo);
     return Axios.put(uri, photo, {
