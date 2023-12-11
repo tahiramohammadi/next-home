@@ -2,7 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import SignUp from '@/@pages/signupForm.vue';
 import login from '@/@pages/loginForm.vue'
-import stepperForm from '@/components/common/stepperForm.vue'
+import listPropertyType from '@/@pages/propertyType/listPropertyType.vue'
 const routes = [
 
   {
@@ -59,18 +59,21 @@ const routes = [
     name:'signIn',
     component:login
   },
+  
+  
+
   {
-    path:'/stepper',
-    name:'stepper',
-    component:stepperForm
+    path:'/listProperty',
+    name:'listProperty',
+    component:listPropertyType
   }
 
 
 ];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes
-})
+  history:createWebHistory(import.meta.env.BASE_URL),
+  routes,
+});
 
 export default router

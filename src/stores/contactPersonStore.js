@@ -2,10 +2,10 @@ import { defineStore } from 'pinia';
 export const usecontactPersonStore=defineStore({
   id:'contactPerson',
   state: () => ({
-    name: null,
-    email: null,
-    phoneNumber: null,
-    moreInformaion: null,
+    name:'',
+    email: '',
+    phoneNumber: '',
+    moreInformaion: '',
   }),
   actions: {
     updateName( name) {
@@ -14,12 +14,22 @@ export const usecontactPersonStore=defineStore({
     updateEmail( email) {
       this.email = email;
     },
-    updatePhoneNumber( nr) {
-      this.phoneNumber = nr;
+    updatePhoneNumber(phoneNumber) {
+      this.phoneNumber =phoneNumber;
     },
     updateMoreInformation( info) {
       this.moreInformaion = info;
     },
-  }
+  },
+  getters:{
+    getContactPerson(state){
+      return{
+        name:state.name,
+        email:state.email,
+        phoneNumber:state.phoneNumber,
+        moreInformaion:state.moreInformaion,
+      }
+    }
+   },
 
 });

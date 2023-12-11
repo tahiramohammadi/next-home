@@ -2,12 +2,12 @@ import { defineStore } from 'pinia';
 export const usebuildingFactsStore=defineStore('buildingFactsStore', {
 
    state: () => ({   
-    furnished: null,
-    numberOfRooms: null,
-    numberOfFloors: null,
-    floorNumber: null,
-    availableFrom: null,
-    availableTo: null,
+    furnished: '',
+    numberOfRooms: '',
+    numberOfFloors: '',
+    floorNumber: '',
+    availableFrom: '',
+    availableTo: '',
   }),
 
 
@@ -31,4 +31,16 @@ export const usebuildingFactsStore=defineStore('buildingFactsStore', {
       this.availableTo = val;
     },
   },
+  getters:{
+    getBuilding(state){
+      return{
+        furnished:state.furnished,
+        numberOfRooms:state.numberOfRooms,
+        numberOfFloors: state.numberOfFloors,
+        floorNumber: state.floorNumber,
+        availableFrom: state.availableFrom,
+        availableTo: state.availableTo,
+      }
+    }
+   },
 });

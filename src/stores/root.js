@@ -23,4 +23,5 @@ pinia.use(usesizeStore);
 pinia.use(usetitleAndDescriptionStore);
 
 
+
 export default pinia

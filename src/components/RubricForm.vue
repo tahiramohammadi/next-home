@@ -53,9 +53,10 @@ export default {
 
     return {
       propertyTypes,
-      targets,
+         targets,
+      target,
       propertyType,
-      target
+   
     }
   }
 }

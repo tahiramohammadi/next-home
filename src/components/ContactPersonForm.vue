@@ -30,17 +30,17 @@
 <script>
 import { computed } from 'vue';
 import { usecontactPersonStore } from '../stores/contactPersonStore.js';
-export default{
+export default {
   setup(){
-    const store = usecontactPersonStore()
- const name = computed({
+    const store = usecontactPersonStore();
+  const name = computed({
   get:() => store.name,
   set:(val) =>store.updateName(val),
 });
 const email = computed({
   get:()=>store.email,
   set:(val) =>store.updateEmail(val) 
-})
+});
 const phoneNumber = computed({
   get:()=> store.phoneNumber,
  

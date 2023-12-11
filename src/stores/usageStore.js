@@ -7,4 +7,9 @@ export const useusageStore=defineStore('usageStore',{
     this.usages = value;
    },
  },
+ getters:{
+  getUsage(state) {
+    return state.usages;
+  },
+},
 });

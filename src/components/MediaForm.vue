@@ -2,7 +2,7 @@
 
     <v-container fluid>
       <v-row justify="center">
-        <v-col md="6" sm="6" xs="6"> </v-col>
+        <v-col md="6" sm="6" xs="6"></v-col>
         <v-col md="1" sm="1" xs="1">
           <v-file-input
             prepend-icon="mdi-camera"
@@ -63,18 +63,18 @@
         aspect-ratio="1"
         class="grey lighten-2"
       >
-        >
+        
       </v-img>
 
       <button v-on:click="postPhotos()">Submit</button>
     </v-container>
 </template>
 
-<script>
+ <script>
  
 import Axios from 'axios';
 import {usephotosStore} from '../stores/photosStore'
-const store =usephotosStore()
+
 export default {
   data() {
     return {
@@ -84,7 +84,7 @@ export default {
       photo: null,
       photos: [],
       formDatas: [],
-      store,
+   $store:usephotosStore()
     };
   },
 
@@ -139,7 +139,7 @@ export default {
           Axios.spread((...responses) => {
             responses.forEach(function (r) {
               let uri = r.data._links.self.href;
-              store.updatePhotoLinks(uri);
+              $store.updatePhotoLinks(uri);
             
             });
             formDatas.forEach(function (fData, i) {

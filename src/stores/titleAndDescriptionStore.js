@@ -2,8 +2,8 @@ import { defineStore } from 'pinia';
 export const usetitleAndDescriptionStore=defineStore('titleAndDescriptionStore',{
 
 state:() => ({
-  title: null,
-  description: null,
+  title: '',
+  description: '',
 }),
 
 actions: {
@@ -13,6 +13,14 @@ actions: {
   updateDescription( value) {
     this.description = value;
   },
+},
+getters:{
+ getTitleAndDesc(state){
+   return{
+     title:state.title,
+     description:state.description,
+   }
+ }
 },
 
 });

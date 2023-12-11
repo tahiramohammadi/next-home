@@ -3,12 +3,12 @@ export const useaddressStore=defineStore({
 id:'address',
    state:() => ({
     address: {
-      street: "mytreet",
-      houseNr: 7,
-      zipCode: "my zip",
+      street:null,
+      houseNr:null,
+      zipCode: null,
       city: null,
       moreInformation: null,
-      hello: ""
+  
     },
   }),
   
@@ -25,8 +25,19 @@ actions:{
   updateCity( city) {
     this.address.city = city;
   },
-  updateMoreInformation( moreInformation) {
-    this.address.moreInformation = moreInformation;
+  updateMoreInformation( info) {
+    this.address.moreInformation = info;
   },
-}
+},
+getters:{
+  getAddress(state){
+    return{
+      street:state.address.street,
+      houseNr:state.address.houseNr,
+      zipCode: state.address.zipCode,
+      city: state.address.city,
+      moreInformation: state.address.moreInformation,
+    }
+  }
+ },
 });

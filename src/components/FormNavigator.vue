@@ -17,212 +17,118 @@
 </template>
 
 <script>
-   
 import Axios from 'axios';
-import {userubricStore} from '../stores/rubricStore'
+import { useaddressStore } from '../stores/addressStore';
+import { usetitleAndDescriptionStore } from '../stores/titleAndDescriptionStore';
+import { usesizeStore } from '../stores/sizeStore';
+import { usepriceStore } from '../stores/priceStore';
+import { useusageStore } from '../stores/usageStore';
+import { usebuildingFactsStore } from '../stores/buildingFactsStore';
+import { usecontactPersonStore } from '../stores/contactPersonStore';
+import { userubricStore } from '../stores/rubricStore';
+import { computed, ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 export default {
-  data() {
-    return {
-      payload: {
-        title: '',
-        target: '',
-        usages: [],
-        size: '',
-        plotSize: '',
-        price: 0,
-        floorNumber: 0,
-        numberOfFloors: 0,
-        numberOfRooms: 0,
-        furnished: false,
-        availableFrom: '',
-        availableTo: '',
-        description: '',
-        address: '',
-        photos: [],
-        contactPerson: '',
-      },
-      
-   store:userubricStore(),
-    };
-  },
+  setup() {
+    ///routes
+    const route = useRoute();
+    const router = useRouter();
+    //stores...
+     const addressStore = useaddressStore();
+    const rubricStore = userubricStore();
+   const titleStore = usetitleAndDescriptionStore();
+     const sizeStore = usesizeStore();
+       const priceStore = usepriceStore(); 
+    const usageStore = useusageStore();
+    const buildingStore = usebuildingFactsStore();
+      const contactStore = usecontactPersonStore();
 
-  computed: {
-    propertyType() {
-      return this.store.propertyType;
-    },
-    uuid() {
-      return this.store.uuid;
-    },
-  },
-  methods: {
-    nextButtonText() {
-      if (this.$route.name === 'contactPersonForm') {
+      //getting data stores....
+   const payload= ref({
+        address:addressStore.getAddress,
+         contactPerson:contactStore.getContactPerson,
+         Dataprice:priceStore.getPrice,
+      Datarubric:rubricStore.getRubric,
+        DataTitle:titleStore.getTitleAndDesc,
+         Databuilding:buildingStore.getBuilding,
+        size:sizeStore.getSize,
+         DataUage:usageStore.getUsage,
+        
+   
+    });
+
+
+    //computed ...
+    const propertyType = computed(() => rubricStore.propertyType);
+    const uuid = computed(() => rubricStore.uuid);
+
+    //methods...
+    const nextButtonText = () => {
+      if (route.name === 'contactPersonForm') {
         return 'submit';
       }
       return 'next';
-    },
-    isFirst() {
-      return this.$route.name === 'rubricForm';
-    },
-    navigateNext() {
-      if (this.$route.name === 'contactPersonForm') {
-        if (this.uid == null) {
-          this.createProperty();
-        }
-        this.$emit('postPhotos');
+    };
 
-        this.linkPhotosAndProperty();
-      } else if (this.$route.name === 'mediaForm') {
-        this.$router.push('/insertOffer/contactPerson');
-      } else if (this.$route.name === 'keyFactsForm') {
-        this.$router.push('/insertOffer/media');
-      } else if (this.$route.name === 'rubricForm') {
-        this.$router.push('/insertOffer/keyFacts');
+    const isFirst = () => {
+      return route.name === 'rubricForm';
+    };
+
+    const navigateNext = () => {
+      if (route.name === 'contactPersonForm') {
+        if (rubricStore.uuid == null) {
+          createProperty();
+        }
+        // emit('postPhotos');
+        linkPhotosAndProperty();
+      } else if (route.name === 'mediaForm') {
+        router.push('/insertOffer/contactPerson');
+      } else if (route.name === 'keyFactsForm') {
+        router.push('/insertOffer/media');
+      } else if (route.name === 'rubricForm') {
+        router.push('/insertOffer/keyFacts');
       }
-    },
-    navigatePrevious() {
-      if (this.$route.name === 'contactPersonForm') {
-        this.$router.push('/insertOffer/media');
-      } else if (this.$route.name === 'mediaForm') {
-        this.$router.push('/insertOffer/keyFacts');
-      } else if (this.$route.name === 'keyFactsForm') {
-        this.$router.push('/insertOffer/rubric');
+    };
+
+    const navigatePrevious = () => {
+      if (route.name === 'contactPersonForm') {
+        router.push('/insertOffer/media');
+      } else if (route.name === 'mediaForm') {
+        router.push('/insertOffer/keyFacts');
+      } else if (route.name === 'keyFactsForm') {
+        router.push('/insertOffer/rubric');
       }
-    },
-    createProperty() {
+    };
+
+    const createProperty = () => {
       console.log('submit called');
-      let path = '/' + this.propertyType.toLowerCase() + 's';
+      let path = '/' + rubricStore.propertyType.toLowerCase() + 's';
       console.log(path);
-    
-      console.log(JSON.stringify(this.payload)); 
-      Axios.post(path, this.payload)
-        .then((r) => {
+      console.log(JSON.stringify(payload.value));
+      Axios.post(path, payload.value )
+        .then(r => {
           const propertyHref = r.data._links.self.href;
           console.log(propertyHref);
-          this.$store.updatePropertyHref( propertyHref);
+          rubricStore.updatePropertyHref(propertyHref);
         })
-        .catch((er) => {
+        .catch(er => {
           console.log(er);
         });
-    },
+    };
 
-    updateProperty() {},
-    linkPhotosAndProperty() {},
-  },
+    const updateProperty = () => {};
+    const linkPhotosAndProperty = () => {};
+    return {
+      propertyType,
+      uuid,
+      createProperty,
+      updateProperty,
+      linkPhotosAndProperty,
+      isFirst,
+      nextButtonText,
+      navigateNext,
+      navigatePrevious
+    };
+  }
 };
-//   import { userubricStore } from '../stores/rubricStore';
-//   import Axios from 'axios';
-//   import { useRoute, useRouter } from 'vue-router'
-//   // import  usePropertyStore from '../models/propertyObjBuilder.js'
-//   import {computed, ref} from 'vue'
-//   export default {
-//     setup( { emit }){
-//       const uid = ref(null)
-//       const rubricStore=userubricStore()
-//       const Route=useRoute()
-//       const router=useRouter()
-//       const payload=ref({title: '',
-//     target:'',
-//     usages:[],
-//     size: '',
-//     plotSize: '',
-//     price: 0,
-//     floorNumber: 0,
-//     numberOfFloors: 0,
-//     numberOfRooms: 0,
-//     furnished: false,
-//     availableFrom: '',
-//     availableTo: '',
-//     description: '',
-//     address: '',
-//     photos: [],
-//     contactPerson: '',})
-    
-//       // const route=useRoute()
-//       // const router = useRouter()
-//       const propertyType=computed(() => rubricStore.propertyType)
-//       const uuid=computed(()=>rubricStore.uuid)
-
-
-
-//       const nextButtonText =computed(() => {
-//       if (Route.name === 'contactPersonForm') {
-//         return 'submit'
-//       }
-//       return 'next'
-//     });
-
-//     const isFirst =computed(() => {
-//       if(Route && Route.name==='rubricForm'){
-//         return Route.value.name === 'rubricForm'
-//       }else{
-//         return 'page not found'
-//       }
-//     });
- 
-     
-//     const navigateNext = () => {
-//       if ( Route.name === 'contactPersonForm') {
-//         if (uid.value == null) {
-//           createProperty()
-//         }
-//         emit('postPhotos')
-//         linkPhotosAndProperty()
-//       } else if ( Route.value.name === 'mediaForm') {
-//         router.push('/insertOffer/contactPerson')
-//       } else if ( Route.value.name === 'keyFactsForm') {
-//         router.push('/insertOffer/media')
-//       } else if ( Route.vlue.name === 'rubricForm') {
-//         router.push('/insertOffer/keyFacts')
-//       }
-//     }
-//     const navigatePrevious = () => {
-//       if ( Route.value.name === 'contactPersonForm') {
-//         router.push('/insertOffer/media')
-//       } else if ( Route.value.name === 'mediaForm') {
-//         router.push('/insertOffer/keyFacts')
-//       } else if ( Route.value.name === 'keyFactsForm') {
-//         router.push('/insertOffer/rubric')
-//       }
-//     }
-
-//     const createProperty = () => {
-//       console.log('submit called')
-//       let path = '/' + propertyType.value.toLowerCase() + 's'
-//       console.log(path);
-
-   
-//       console.log(JSON.stringify(payload))
-//       Axios.post(path, payload)
-//         .then((r) => {
-//           const propertyHref = r.data._links.self.href
-//           console.log(propertyHref)
-//           rubricStore.updatePropertyHref( propertyHref)
-//         })
-//         .catch((er) => {
-//           console.log(er)
-//         })
-//     }
-    
-
-//     const updateProperty = () => {};
-// const linkPhotosAndProperty = () => {};
-//       return {
-//         isFirst,
-//            propertyType,
-//            uuid,
-//            nextButtonText,
-//            navigateNext,
-//            navigatePrevious
-
-//       }
-//     }
-//   }
-
-
- 
-
-
-
-
 </script>

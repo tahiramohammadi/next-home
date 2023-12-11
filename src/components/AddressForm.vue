@@ -35,7 +35,7 @@ const streetInput = computed({
 });
 const houseNrInput = computed({
   get:()=>store.address.houseNr,
-  set:(value)=>store.  updateHouseNr(value)
+  set:(value)=>store.updateHouseNr(value)
 })
 const zipCodeInput = computed({
   get:()=>store.address.zipCode,

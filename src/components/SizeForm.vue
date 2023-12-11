@@ -21,11 +21,12 @@
  <script>
 import {usesizeStore} from '../stores/sizeStore.js'
 import {computed,  ref } from 'vue'
-export default{
+export default {
   setup(){
     const store=usesizeStore()
-     const squareMeter=ref('\u33A1')
-     function created(){
+     const squareMeter=ref('\u33A1');
+
+     const created =()=> {
       store.updateUnit( squareMeter)
      }
      const value =computed({

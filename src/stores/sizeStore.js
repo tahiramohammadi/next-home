@@ -13,5 +13,13 @@ export const usesizeStore=defineStore('sizeStore',{
     updateUnit( unit) {
       this.size.unit = unit;
     },
-  },  
+  }, 
+  getters:{
+    getSize(state){
+      return{
+        value:state.size.value,
+        unit:state.size.unit,
+      }
+    }
+   }, 
 });
