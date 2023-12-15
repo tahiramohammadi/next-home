@@ -1,7 +1,10 @@
-import { defineStore } from 'pinia';
-export const usebuildingFactsStore=defineStore('buildingFactsStore', {
+import {
+  defineStore
+} from 'pinia';
+export const usebuildingFactsStore = defineStore('buildingFactsStore', {
 
-   state: () => ({   
+  state: () => ({
+
     furnished: '',
     numberOfRooms: '',
     numberOfFloors: '',
@@ -11,17 +14,17 @@ export const usebuildingFactsStore=defineStore('buildingFactsStore', {
   }),
 
 
-  actions:{
+  actions: {
     updateFurnished(val) {
       this.furnished = val;
     },
-    updateNumberOfRooms( val) {
+    updateNumberOfRooms(val) {
       this.numberOfRooms = val;
     },
     updateNumberOfFloors(val) {
       this.numberOfFloors = val;
     },
-    updateFloorNumber( val) {
+    updateFloorNumber(val) {
       this.floorNumber = val;
     },
     updateAvailableFrom(val) {
@@ -31,16 +34,39 @@ export const usebuildingFactsStore=defineStore('buildingFactsStore', {
       this.availableTo = val;
     },
   },
-  getters:{
-    getBuilding(state){
-      return{
-        furnished:state.furnished,
-        numberOfRooms:state.numberOfRooms,
-        numberOfFloors: state.numberOfFloors,
-        floorNumber: state.floorNumber,
-        availableFrom: state.availableFrom,
-        availableTo: state.availableTo,
-      }
-    }
-   },
+  getters: {
+  getfurnished() {
+    return this.furnished
+
+
+  },
+  getNum() {
+    return this.numberOfRooms
+
+
+
+  },
+  getFloor() {
+    return this.numberOfFloors
+
+
+  },
+  getfloorNum() {
+    return this.floorNumber
+
+
+
+  },
+  getAvailbleFrom() {
+    return this.availableFrom
+
+
+    
+  },
+  getAvailbleTo() {
+    return  this.availableTo
+
+
+  }
+  },
 });

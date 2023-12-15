@@ -4,7 +4,7 @@ id:'address',
    state:() => ({
     address: {
       street:null,
-      houseNr:null,
+      houseNr:0,
       zipCode: null,
       city: null,
       moreInformation: null,
@@ -30,13 +30,13 @@ actions:{
   },
 },
 getters:{
-  getAddress(state){
+  getAddress(){
     return{
-      street:state.address.street,
-      houseNr:state.address.houseNr,
-      zipCode: state.address.zipCode,
-      city: state.address.city,
-      moreInformation: state.address.moreInformation,
+      street:this.address.street,
+      houseNr:this.address.houseNr,
+      zipCode:this.address.zipCode,
+      city:this.address.city,
+      moreInformation: this.address.moreInformation,
     }
   }
  },

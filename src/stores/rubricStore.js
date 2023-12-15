@@ -2,7 +2,7 @@
 export const userubricStore=defineStore('rubricStore',{
   state: () => ({
      target: '', 
-     propertyType: '', 
+     propertyType:null, 
      propertyHref: null}),
   
   actions:{
@@ -17,11 +17,14 @@ export const userubricStore=defineStore('rubricStore',{
    },
  },
  getters:{
-  getRubric(state){
+  getTarget(){
+    return this.target
+    
+  },
+  getRubric(){
     return{
-      target:state.target,
-      propertyType:state.propertyType,
-      propertyHref:state.propertyHref
+      propertyType:this.propertyType,
+      propertyHref:this.propertyHref
     }
   }
  },

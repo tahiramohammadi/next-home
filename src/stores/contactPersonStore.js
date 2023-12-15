@@ -5,7 +5,7 @@ export const usecontactPersonStore=defineStore({
     name:'',
     email: '',
     phoneNumber: '',
-    moreInformaion: '',
+    moreInformation: '',
   }),
   actions: {
     updateName( name) {
@@ -18,17 +18,19 @@ export const usecontactPersonStore=defineStore({
       this.phoneNumber =phoneNumber;
     },
     updateMoreInformation( info) {
-      this.moreInformaion = info;
+      this.moreInformation = info;
     },
   },
   getters:{
-    getContactPerson(state){
+    getContactPerson(){
       return{
-        name:state.name,
-        email:state.email,
-        phoneNumber:state.phoneNumber,
-        moreInformaion:state.moreInformaion,
+       name: this.name,
+     email: this.email,
+     phoneNumber: this.phoneNumber,
+     moreInformation: this.moreInformation
       }
+  
+    
     }
    },
 

@@ -15,12 +15,8 @@ actions: {
   },
 },
 getters:{
- getTitleAndDesc(state){
-   return{
-     title:state.title,
-     description:state.description,
-   }
- }
+ getTitleAndDesc(){
+   return this.title, this.description
 },
-
+},
 });

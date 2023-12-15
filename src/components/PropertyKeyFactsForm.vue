@@ -19,7 +19,7 @@
     <plotSizeForm v-if="propertyType === 'Plot' || propertyType === 'House'">
     </plotSizeForm>
     <PriceForm></PriceForm>
-    <UsageForm> </UsageForm>
+    <UsageForm > </UsageForm>
     <buildingFactsForm v-if="propertyType != 'Plot'"> </buildingFactsForm>
     <v-row justify="center">
   Object description 

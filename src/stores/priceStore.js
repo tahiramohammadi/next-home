@@ -14,10 +14,10 @@ export const usepriceStore=defineStore('priceStore', {
     }
   },
   getters:{
-    getPrice(state){
+    getPrice(){
       return{
-        amount:state.price.amount,
-        currency:state.price.currency,
+        amount:this.price.amount,
+        currency:this.price.currency,
       }
     }
    },

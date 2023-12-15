@@ -20,7 +20,7 @@
     </v-card>
     <v-card row wrap justify-space-around>
  
-        <v-textarea auto-grow variant="outlined" rows="3" v-model="moreInformation" label="More information"  color="#1DE9B6">
+        <v-textarea auto-grow variant="outlined" rows="3" v-model="moreInfo" label="More information"  color="#1DE9B6">
         </v-textarea>
   
     </v-card>
@@ -46,8 +46,8 @@ const phoneNumber = computed({
  
   set:(val)=>store.updatePhoneNumber(val),
 });
-const moreInformation = computed({
-  get:()=>store.moreInformaion,
+const moreInfo = computed({
+  get:()=>store.moreInformation,
   set:(val)=>store.updateMoreInformation(val),
 });
 
@@ -56,7 +56,7 @@ const moreInformation = computed({
     name,
     email,
     phoneNumber,
-    moreInformation,
+ moreInfo,
   }
   }
 }

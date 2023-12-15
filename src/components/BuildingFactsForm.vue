@@ -62,7 +62,7 @@ import { usebuildingFactsStore } from '../stores/buildingFactsStore.js';
 import { userubricStore } from '../stores/rubricStore.js';
 const store = usebuildingFactsStore()
 const rubricStore=userubricStore()
-const furnishments = ref(['fully furnished', 'partly furnished', 'Not furnished']);
+const furnishments = ref(['Fully furnished', 'partly furnished', 'Not furnished']);
 const availableFromMenu = ref(false)
 const availableToMenu = ref(false)
 

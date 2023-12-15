@@ -20,7 +20,7 @@
 import Axios from 'axios';
 import { useaddressStore } from '../stores/addressStore';
 import { usetitleAndDescriptionStore } from '../stores/titleAndDescriptionStore';
-import { usesizeStore } from '../stores/sizeStore';
+import { usesizeStore } from '../stores/sizeStore.js';
 import { usepriceStore } from '../stores/priceStore';
 import { useusageStore } from '../stores/usageStore';
 import { usebuildingFactsStore } from '../stores/buildingFactsStore';
@@ -34,29 +34,49 @@ export default {
     const route = useRoute();
     const router = useRouter();
     //stores...
-     const addressStore = useaddressStore();
+    const addressStore = useaddressStore();
     const rubricStore = userubricStore();
-   const titleStore = usetitleAndDescriptionStore();
-     const sizeStore = usesizeStore();
-       const priceStore = usepriceStore(); 
+    const titleStore = usetitleAndDescriptionStore();
+    const sizeStore = usesizeStore();
+    const priceStore = usepriceStore();
     const usageStore = useusageStore();
     const buildingStore = usebuildingFactsStore();
-      const contactStore = usecontactPersonStore();
+    const contactStore = usecontactPersonStore();
+    //getting data stores....
+    const address = addressStore.getAddress;
+    const contactPerson = contactStore.getContactPerson;
+    const price = priceStore.getPrice;
+    const usage = usageStore.getUsage;
+    const title = titleStore.getTitleAndDesc;
+    const description = titleStore.getTitleAndDesc;
+    const size = sizeStore.getSize;
+    const plotSize = sizeStore.getSize;
+    const target = rubricStore.getTarget;
+    const numberOfFloors = buildingStore.getFloor;
+    const floorNumber = buildingStore.getfloorNum;
+    const furnished = buildingStore.getfurnished;
+    const availableFrom = buildingStore.getAvailbleFrom;
+    const availableTo = buildingStore.getAvailbleTo;
+    const numberOfRooms = buildingStore.getNum;
 
-      //getting data stores....
-   const payload= ref({
-        address:addressStore.getAddress,
-         contactPerson:contactStore.getContactPerson,
-         Dataprice:priceStore.getPrice,
-      Datarubric:rubricStore.getRubric,
-        DataTitle:titleStore.getTitleAndDesc,
-         Databuilding:buildingStore.getBuilding,
-        size:sizeStore.getSize,
-         DataUage:usageStore.getUsage,
-        
-   
+    const payload = ref({
+      address:address,
+      contactPerson:contactPerson,
+      price:price,
+      title,
+      plotSize:plotSize,
+      size:size,
+      description,
+      usage,
+      target,
+      furnished,
+      numberOfFloors,
+      floorNumber,
+      numberOfRooms,
+      availableFrom:availableFrom,
+      availableTo,
+    
     });
-
 
     //computed ...
     const propertyType = computed(() => rubricStore.propertyType);
@@ -101,19 +121,19 @@ export default {
     };
 
     const createProperty = () => {
-      console.log('submit called');
-      let path = '/' + rubricStore.propertyType.toLowerCase() + 's';
-      console.log(path);
-      console.log(JSON.stringify(payload.value));
-      Axios.post(path, payload.value )
-        .then(r => {
+      try {
+        console.log('submit called');
+        let path = '/' + rubricStore.propertyType.toLowerCase() + 's';
+        console.log(path);
+        console.log(JSON.stringify(payload.value));
+        Axios.post(path, payload.value).then(r => {
           const propertyHref = r.data._links.self.href;
           console.log(propertyHref);
           rubricStore.updatePropertyHref(propertyHref);
-        })
-        .catch(er => {
-          console.log(er);
         });
+      } catch (er) {
+        console.log(er);
+      }
     };
 
     const updateProperty = () => {};

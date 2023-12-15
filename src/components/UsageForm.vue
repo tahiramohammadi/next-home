@@ -10,33 +10,45 @@
   </div>
 </template>
 
-<script setup>
-import { userubricStore} from '../stores/rubricStore.js'
+<script>
+import { userubricStore } from '../stores/rubricStore.js';
 import { useusageStore } from '../stores/usageStore.js';
 import { computed, ref } from 'vue';
-const store = useusageStore()
-const rubricStore=userubricStore()
-const buildingUsages = ref(['For living', 'For business'])
-const plotUsages = ref(['Construction of living buildings',
-  'Construction of business buildings',
-  'Agriculture',
-  'Sport fields',
-  'Other uses'])
 
-const propertyType = computed(() => rubricStore.propertyType);
+export default {
+  setup() {
+    const store = useusageStore();
+    const rubricStore = userubricStore();
 
-const usages = computed(() => {
-  if (propertyType === 'plot') {
-    return plotUsages.value;
+    const plotUsages = ref([
+      'Construction of living buildings',
+      'Construction of business buildings',
+      'Agriculture',
+      'Sport fields',
+      'Other uses'
+    ]);
+
+    const buildingUsages = ref(['For living', 'For business']);
+
+    const propertyType = computed(() => rubricStore.propertyType);
+
+    const usages = computed(() => {
+      if (propertyType.value === 'plot') {
+        return plotUsages.value;
+      } else {
+        return buildingUsages.value;
+      }
+    });
+
+    const usagesToStore = computed({
+      get: () => store.usage,
+      set: (val) => store.updateUsages(val)
+    });
+
+    return {
+      usagesToStore,
+      usages
+    };
   }
-  return buildingUsages.value;
-
-});
-const usagesToStore = computed({
-  get:() => store.usages,
-
-  set:(val)=>
-    store.updateUsages( val)
-  
-})
+};
 </script>

@@ -9,7 +9,7 @@
           </v-card-title>
           <v-card-actions>
             <v-radio-group v-model="propertyType">
-              <v-radio v-for="propertyType in propertyTypes" :key="propertyType" :label="propertyType"
+              <v-radio v-for="(propertyType, i) in propertyTypes" :key="i" :label="propertyType"
                 :value="propertyType" dense color="#1DE9B6">
               </v-radio>
             </v-radio-group>
@@ -24,7 +24,7 @@
           </v-card-title>
           <v-card-actions>
             <v-radio-group v-model="target">
-              <v-radio v-for="target in targets" :key="target" :label="target" :value="target" dense color="#1DE9B6">
+              <v-radio v-for="(target, index) in targets" :key="index" :label="target" :value="target" dense color="#1DE9B6">
               </v-radio>
             </v-radio-group>
           </v-card-actions>
@@ -41,15 +41,16 @@ export default {
     const store = userubricStore()
     const propertyTypes = ref(['Apartment', 'House', 'Shop', 'Plot']);
     const targets = ref(['Sell', 'Rent', 'Gage'])
+       const target = computed({
+      get: () => store.target,
+      set: (value) => store.updateTarget(value),
+    });
     const propertyType = computed({
       get: () => store.propertyType,
-      set: (val) => store.updatePropertyType(val),
+      set: ( value) => store.updatePropertyType( value),
 
     });
-    const target = computed({
-      get: () => store.target,
-      set: (val) => store.updateTarget(val),
-    });
+ 
 
     return {
       propertyTypes,
