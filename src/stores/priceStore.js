@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 export const usepriceStore=defineStore('priceStore', {
  
   state:() => ({
-    price: { amount: null, currency: null },
+    price: { amount: '', currency: '' },
   }),
   
   actions:{
@@ -13,4 +13,12 @@ export const usepriceStore=defineStore('priceStore', {
       this.price.currency = value;
     }
   },
+  getters:{
+    getPrice(){
+      return{
+        amount:this.price.amount,
+        currency:this.price.currency,
+      }
+    }
+   },
 });

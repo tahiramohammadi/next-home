@@ -2,7 +2,10 @@ import { defineStore } from 'pinia';
 export const usesizeStore=defineStore('sizeStore',{
 
   state:() => ({
-    size: { value: null, unit: null },
+    size: {
+       value: '',
+       unit: null
+       },
   }),
   
    actions:{
@@ -13,5 +16,13 @@ export const usesizeStore=defineStore('sizeStore',{
     updateUnit( unit) {
       this.size.unit = unit;
     },
-  },  
+  }, 
+  getters:{
+    getSize(){
+      return{
+         value:this.size.value,
+         unit: this.size.unit
+      }
+    }
+   }, 
 });

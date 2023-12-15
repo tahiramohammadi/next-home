@@ -19,7 +19,7 @@
     <plotSizeForm v-if="propertyType === 'Plot' || propertyType === 'House'">
     </plotSizeForm>
     <PriceForm></PriceForm>
-    <UsageForm> </UsageForm>
+    <UsageForm > </UsageForm>
     <buildingFactsForm v-if="propertyType != 'Plot'"> </buildingFactsForm>
     <v-row justify="center">
   Object description 
@@ -42,7 +42,6 @@ import plotSizeForm from '../components/PlotSizeForm.vue';
 import PriceForm from '../components/PriceForm.vue';
 import UsageForm from '../components/UsageForm.vue';
 import buildingFactsForm from '../components/BuildingFactsForm.vue';
-
 import { userubricStore } from '../stores/rubricStore.js';
 import { usetitleAndDescriptionStore } from '../stores/titleAndDescriptionStore.js';
 import { computed } from 'vue'

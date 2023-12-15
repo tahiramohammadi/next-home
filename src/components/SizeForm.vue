@@ -20,14 +20,12 @@
 
  <script>
 import {usesizeStore} from '../stores/sizeStore.js'
-import {computed,  ref } from 'vue'
-export default{
+import {computed,  ref,  onMounted} from 'vue'
+export default {
   setup(){
     const store=usesizeStore()
-     const squareMeter=ref('\u33A1')
-     function created(){
-      store.updateUnit( squareMeter)
-     }
+    const squareMeter = ref('\u33A1');
+
      const value =computed({
         get:()=> store.size.value,
       
@@ -36,8 +34,12 @@ export default{
     
       })
       
+     onMounted(()=> {
+      store.updateUnit( squareMeter)
+     });
+     
       return{
-      created,
+      squareMeter,
       value
     }
 

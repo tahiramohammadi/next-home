@@ -1,10 +1,15 @@
 import { defineStore } from 'pinia';
 export const useusageStore=defineStore('usageStore',{
 
-  state:() => ({ usages: [] }),
+  state:() => ({ usage: [] }),
   actions: {
    updateUsages( value) {
-    this.usages = value;
+    this.usage = value;
    },
  },
+ getters:{
+  getUsage() {
+    return this.usage;
+  },
+},
 });

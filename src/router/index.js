@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import SignUp from '@/@pages/signupForm.vue';
 import login from '@/@pages/loginForm.vue'
+import listPropertyType from '@/@pages/propertyType/listPropertyType.vue'
 const routes = [
 
   {
@@ -56,12 +57,20 @@ const routes = [
     path:'/signin',
     name:'signIn',
     component:login
+  },
+  
+  
+
+  {
+    path:'/listProperty',
+    name:'listProperty',
+    component:listPropertyType
   }
 ];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes
-})
+  history:createWebHistory(import.meta.env.BASE_URL),
+  routes,
+});
 
 export default router

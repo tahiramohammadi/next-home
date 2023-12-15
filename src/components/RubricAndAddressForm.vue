@@ -1,4 +1,4 @@
-<template #1>
+<template>
   <v-container fluid>
     <v-divider></v-divider>
 

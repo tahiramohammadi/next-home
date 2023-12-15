@@ -20,7 +20,7 @@
     </v-card>
     <v-card row wrap justify-space-around>
  
-        <v-textarea auto-grow variant="outlined" rows="3" v-model="moreInformation" label="More information"  color="#1DE9B6">
+        <v-textarea auto-grow variant="outlined" rows="3" v-model="moreInfo" label="More information"  color="#1DE9B6">
         </v-textarea>
   
     </v-card>
@@ -30,24 +30,24 @@
 <script>
 import { computed } from 'vue';
 import { usecontactPersonStore } from '../stores/contactPersonStore.js';
-export default{
+export default {
   setup(){
-    const store = usecontactPersonStore()
- const name = computed({
+    const store = usecontactPersonStore();
+  const name = computed({
   get:() => store.name,
   set:(val) =>store.updateName(val),
 });
 const email = computed({
   get:()=>store.email,
   set:(val) =>store.updateEmail(val) 
-})
+});
 const phoneNumber = computed({
   get:()=> store.phoneNumber,
  
   set:(val)=>store.updatePhoneNumber(val),
 });
-const moreInformation = computed({
-  get:()=>store.moreInformaion,
+const moreInfo = computed({
+  get:()=>store.moreInformation,
   set:(val)=>store.updateMoreInformation(val),
 });
 
@@ -56,7 +56,7 @@ const moreInformation = computed({
     name,
     email,
     phoneNumber,
-    moreInformation,
+ moreInfo,
   }
   }
 }
