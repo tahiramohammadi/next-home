@@ -73,76 +73,73 @@ export default {
     const transparent = 'rgba(255, 255, 255, 0)';
     const nodisplay = { display: 'none' };
     const photos = ref([]);
-    const submitFile=ref(null)
+    const submitFile = ref(null);
     const formDatas = ref([]);
     const store = usephotosStore();
-    const src=ref([])
+    const src = ref([]);
 
-  
-    const handleFileSelect = (e)=>{
-        const submitFile = e.target.files[0];
-        displayImage(submitFile);
-        console.log(submitFile);
+
+     //select photos....
+    const handleFileSelect = e => {
+      const submitFile = e.target.files[0];
+      displayImage(submitFile);
+      console.log(submitFile);
+    };
+     
+      //display photos for preview....
+    const displayImage = submitFile => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        photos.value.push(e.target.result);
+      };
+      if (submitFile) {
+        reader.readAsDataURL(submitFile);
+      }
     };
 
-   const displayImage=(submitFile)=>{
-          const reader=new FileReader();
-          reader.onload=(e)=>{
-            photos.value.push(e.target.result);
-          };
-      if(submitFile){
-       reader.readAsDataURL(submitFile);
-        }
-     };
-
-    const deletePhoto = (i) => {
+        
+    const deletePhoto = i => {
       photos.value.splice(i, 1);
     };
-    
 
 
     const postPhotos = () => {
       const path = '/photos';
-
       let promises = [];
-photos.value.forEach(() => {
+      photos.value.forEach(() => {
         promises.push(Axios.post(path, { summary: '' }));
       });
 
-     Promise.all(promises)
-  .then(
-    Axios.spread((...responses) => {
-      responses.forEach((r) => {
-        let uri = r.data._links.self.href;
-        store.updatePhotoLinks(uri);
-          console.log('uri', uri);
-      });
+      Promise.all(promises)
+        .then(
+          Axios.spread((...responses) => {
+            responses.forEach(r => {
+              let uri = r.data._links.self.href;
+              store.updatePhotoLinks(uri);
+              console.log('uri', uri);
+            });
 
-      let contentPromises = [];
-   let photoLinks = store.photoLinks;
-      photos.value.forEach((displayImage,i) => {
-        let promise = Axios.put(photoLinks[i],displayImage,{
-          headers: {
-            'Content-Type': 'image/jpeg',
-          },
-        });
-        contentPromises.push(promise);
-      });
+            let contentPromises = [];
+            let photoLinks = store.photoLinks;
+            photos.value.forEach((displayImage, i) => {
+              let promise = Axios.put(photoLinks[i], displayImage, {
+                headers: {
+                  'Content-Type': 'image/jpeg'
+                }
+              });
+              contentPromises.push(promise);
+            });
 
-      Promise.all(contentPromises)
-        .then((results) => {
-        
-        })
-        .catch((error) => {
-          console.error('Error during PUT requests:', error);
-        
+            Promise.all(contentPromises)
+              .then(results => {})
+              .catch(error => {
+                console.error('Error during PUT requests:', error);
+              });
+          })
+        )
+        .catch(error => {
+          console.error('Error in Promise.all:', error);
         });
-    })
-  )
-  .catch((error) => {
-    console.error('Error in Promise.all:', error);
-   
-  });
     };
 
     return {
@@ -156,13 +153,11 @@ photos.value.forEach(() => {
       deletePhoto,
       postPhotos,
       src
-
     };
-  },
+  }
 };
 </script>
 <style scoped>
-
 .my-8 {
   margin-top: 4rem;
   margin-bottom: 4rem;
