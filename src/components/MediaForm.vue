@@ -7,7 +7,6 @@
           <v-file-input
             prepend-icon="mdi-camera"
             variant="plain"
-            class="nodisplay"
             success
             name="file"
           accept="image/*"
@@ -27,7 +26,7 @@
                 :elevation="hover ? 12 : 2"
                 :class="{ 'on-hover': hover }"
               >
-                <v-img :src="pic" v-if="src" aspect-ratio="1" class="grey lighten-2">
+                <v-img :src="pic" v-if="pic" aspect-ratio="1" class="grey lighten-2">
                   <v-row
                     class="fill-height flex-column"
                     justify="end"
@@ -58,6 +57,17 @@
           </v-col>
         </template>
       </v-row>
+        <!-- <v-btn @click="getPhoto"> get Photo</v-btn>
+
+      <v-img
+        v-if="imsrc != null"
+        v-bind:src="'data:image/jpeg;base64,' + imsrc"
+        alt=""
+        aspect-ratio="1"
+        class="grey lighten-2"
+      >
+        >
+      </v-img> -->
       <button @click="postPhotos()">Submit</button>
 
     </v-container>
@@ -71,7 +81,6 @@ import { usephotosStore } from '../stores/photosStore';
 export default {
   setup() {
     const transparent = 'rgba(255, 255, 255, 0)';
-    const nodisplay = { display: 'none' };
     const photos = ref([]);
     const submitFile = ref(null);
     const formDatas = ref([]);
@@ -89,7 +98,7 @@ export default {
       //display photos for preview....
     const displayImage = submitFile => {
       const reader = new FileReader();
-      reader.onload = e => {
+      reader.onload = (e) => {
         photos.value.push(e.target.result);
       };
       if (submitFile) {
@@ -144,7 +153,6 @@ export default {
 
     return {
       transparent,
-      nodisplay,
       photos,
       formDatas,
       store,
