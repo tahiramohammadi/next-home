@@ -7,8 +7,12 @@
           <v-file-input
             prepend-icon="mdi-camera"
             variant="plain"
+            class="nodisplay"
             success
+            name="file"
+          accept="image/*"
             v-model="submitFile"
+            @change="handleFileSelect"
           ></v-file-input>
         </v-col>
         <v-col md="5" sm="5" xs="5"> </v-col>
@@ -23,7 +27,7 @@
                 :elevation="hover ? 12 : 2"
                 :class="{ 'on-hover': hover }"
               >
-                <v-img :src="pic" aspect-ratio="1" class="grey lighten-2">
+                <v-img :src="pic" v-if="src" aspect-ratio="1" class="grey lighten-2">
                   <v-row
                     class="fill-height flex-column"
                     justify="end"
@@ -54,120 +58,107 @@
           </v-col>
         </template>
       </v-row>
-      <v-btn @click="getPhoto"> get Photo</v-btn>
+      <button @click="postPhotos()">Submit</button>
 
-      <v-img
-        v-if="imsrc != null"
-        v-bind:src="'data:image/jpeg;base64,' + imsrc"
-        alt=""
-        aspect-ratio="1"
-        class="grey lighten-2"
-      >
-        
-      </v-img>
-
-      <button v-on:click="postPhotos()">Submit</button>
     </v-container>
 </template>
 
- <script>
- 
+<script>
+import { ref } from 'vue';
 import Axios from 'axios';
-import {usephotosStore} from '../stores/photosStore'
+import { usephotosStore } from '../stores/photosStore';
 
 export default {
-  data() {
-    return {
-      transparent: 'rgba(255, 255, 255, 0)',
-      nodisplay: { display: 'none' },
-      imsrc: null,
-      photo: null,
-      photos: [],
-      formDatas: [],
-   $store:usephotosStore()
+  setup() {
+    const transparent = 'rgba(255, 255, 255, 0)';
+    const nodisplay = { display: 'none' };
+    const photos = ref([]);
+    const submitFile=ref(null)
+    const formDatas = ref([]);
+    const store = usephotosStore();
+    const src=ref([])
+
+  
+    const handleFileSelect = (e)=>{
+        const submitFile = e.target.files[0];
+        displayImage(submitFile);
+        console.log(submitFile);
     };
-  },
 
-  computed: {
-    
-    submitFile: { 
-      set(photo) {
-        let imsrc = URL.createObjectURL(new Blob(photo));
-        this.photos.unshift(imsrc);
-        let formData = new FormData();
-        formData.append('file', photo);
-        this.formDatas.unshift(formData);
-      
-      },
-    
-    },
-    
-  },
+   const displayImage=(submitFile)=>{
+          const reader=new FileReader();
+          reader.onload=(e)=>{
+            photos.value.push(e.target.result);
+          };
+      if(submitFile){
+       reader.readAsDataURL(submitFile);
+        }
+     };
 
-  methods: {
-    getPhoto() {
-      Axios.get('photos/1', {
-        responseType: 'arraybuffer',
-        headers: { accept: 'image/*' },
-      }).then((r) => {
-      
-        this.imsrc = Buffer.from(r.data, 'binary').toString('base64');
-      
-        console.log(this.imsrc);
-      });
-    },
-
-    deletePhoto(i) {
-      this.photos.splice(i, 1);
-      this.formDatas.splice(i, 1);
-    },
-
+    const deletePhoto = (i) => {
+      photos.value.splice(i, 1);
+    };
     
 
-    postPhotos() {
+
+    const postPhotos = () => {
       const path = '/photos';
-      let formDatas = this.formDatas;
-      let contentPromises = [];
-      let photoLinks = this.store.photoLinks;
+
       let promises = [];
-      formDatas.forEach(function () {
+photos.value.forEach(() => {
         promises.push(Axios.post(path, { summary: '' }));
       });
 
-      Promise.all(promises)
-        .then(
-          Axios.spread((...responses) => {
-            responses.forEach(function (r) {
-              let uri = r.data._links.self.href;
-              $store.updatePhotoLinks(uri);
-            
-            });
-            formDatas.forEach(function (fData, i) {
-              let promise = Axios.put(photoLinks[i], fData, {
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                },
-              });
-              contentPromises.push(promise);
-              
-            });
-            Promise.all(contentPromises);
-          })
-        )
+     Promise.all(promises)
+  .then(
+    Axios.spread((...responses) => {
+      responses.forEach((r) => {
+        let uri = r.data._links.self.href;
+        store.updatePhotoLinks(uri);
+          console.log('uri', uri);
+      });
 
-        .catch((err) => {
-          if (err.response) {
-            console.log(err.response);
-          } else if (err.request) {
-            console.log(err.message);
-          } else {
-            console.log(err);
-          }
+      let contentPromises = [];
+   let photoLinks = store.photoLinks;
+      photos.value.forEach((displayImage,i) => {
+        let promise = Axios.put(photoLinks[i],displayImage,{
+          headers: {
+            'Content-Type': 'image/jpeg',
+          },
         });
-     
-    },
+        contentPromises.push(promise);
+      });
+
+      Promise.all(contentPromises)
+        .then((results) => {
+        
+        })
+        .catch((error) => {
+          console.error('Error during PUT requests:', error);
+        
+        });
+    })
+  )
+  .catch((error) => {
+    console.error('Error in Promise.all:', error);
+   
+  });
+    };
+
+    return {
+      transparent,
+      nodisplay,
+      photos,
+      formDatas,
+      store,
+      handleFileSelect,
+      submitFile,
+      deletePhoto,
+      postPhotos,
+      src
+
+    };
   },
-  components: {},
 };
 </script>
 <style scoped>

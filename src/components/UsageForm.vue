@@ -21,11 +21,9 @@ export default {
     const rubricStore = userubricStore();
 
     const plotUsages = ref([
-      'Construction of living buildings',
-      'Construction of business buildings',
-      'Agriculture',
-      'Sport fields',
-      'Other uses'
+      'Construction', 'Sport',
+       'Construction for business', 
+       'For business', 'Other usage',' Agriculture'
     ]);
 
     const buildingUsages = ref(['For living', 'For business']);
@@ -33,10 +31,11 @@ export default {
     const propertyType = computed(() => rubricStore.propertyType);
 
     const usages = computed(() => {
-      if (propertyType.value === 'plot') {
-        return plotUsages.value;
+      if (propertyType.value === "Plot") {
+     return plotUsages.value;
       } else {
-        return buildingUsages.value;
+          return buildingUsages.value;
+         
       }
     });
 

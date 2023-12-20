@@ -99,7 +99,6 @@ export default {
         if (rubricStore.uuid == null) {
           createProperty();
         }
-        // emit('postPhotos');
         linkPhotosAndProperty();
       } else if (route.name === 'mediaForm') {
         router.push('/insertOffer/contactPerson');

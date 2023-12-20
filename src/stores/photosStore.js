@@ -16,11 +16,11 @@ export const usephotosStore=defineStore('photosStore',{
     }
   },
   getters:{
-    getPhoto(state){
-      return{
-        photoLinks:state.photoLinks,
+    getPhoto(){
+      return
+      photoLinks:this.photoLinks
      
-      }
-    }
+    } 
+    
    },
 });
