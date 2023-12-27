@@ -129,8 +129,9 @@ const submit = async () => {
     loading.value = true;
     await axios.post("/users", payload.value);
          router.push("/loginForm")
-    reset();
+ 
     toast.success("You are successfully registered!!")
+       reset();
   } catch (error) {
     toast.error("you are not registered", error);
   }

@@ -1,9 +1,11 @@
 <template>
   <v-container>
-        <router-view> </router-view>
-
+        <router-view></router-view>
     <v-divider> </v-divider>
-    <FormNavigator> </FormNavigator>
+    <keep-alive>
+  <FormNavigator></FormNavigator>
+    </keep-alive>
+  
   </v-container>
 </template>
 <script setup>

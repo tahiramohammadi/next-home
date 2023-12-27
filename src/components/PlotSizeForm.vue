@@ -12,8 +12,8 @@
   </v-row>
 </template>
 <script setup>
-import {  usesizeStore } from '../stores/sizeStore.js';
-const store =  usesizeStore()
+import {  useplotStore } from '../stores/plotStore.js';
+const store =useplotStore()
 import { computed, ref } from 'vue'
 const sizeUnits = ref(['\u33A1', '\u33A2', 'Biswa', 'Biswasa', 'Girib'])
 

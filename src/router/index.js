@@ -1,7 +1,8 @@
 
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 import SignUp from '@/@pages/signupForm.vue';
 import login from '@/@pages/loginForm.vue'
+import MediaForm from '@/components/MediaForm.vue'
 import listPropertyType from '@/@pages/propertyType/listPropertyType.vue'
 const routes = [
 
@@ -12,7 +13,7 @@ const routes = [
       import(
 '../components/InsertOffer.vue'
       ),
-
+      meta: { keepAlive: true }   ,
     children: [
       {
         path: 'rubric',
@@ -41,10 +42,8 @@ const routes = [
       {
         path: 'media',
         name: 'mediaForm',
-        component: () =>
-          import(
-       '../components/MediaForm.vue'
-          ),
+        component: MediaForm,
+        
       },
     ],
   },

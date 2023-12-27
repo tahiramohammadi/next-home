@@ -3,24 +3,28 @@ export const usephotosStore=defineStore('photosStore',{
 
   state: () => ({
     photoLinks: [],
+    images:[],
+
   }),
    actions:{
- 
+      
+    updateImage(value) {
+      this.images.push(value);
+       },
     updatePhotoLinks(value) {
    this.photoLinks.push(value);
     },
+  
 
-
-    deletePhotoLink(i){
-      this.photoLinks.splice(i, 1);
-    }
+    removeImage(i) {
+      this.images.splice(i, 1);
+    },
   },
   getters:{
     getPhoto(){
-      return
-      photoLinks:this.photoLinks
+      return this.photoLinks
      
     } 
-    
    },
+   
 });

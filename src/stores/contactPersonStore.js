@@ -33,5 +33,5 @@ export const usecontactPersonStore=defineStore({
     
     }
    },
-
+   persist: true,
 });

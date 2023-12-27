@@ -2,17 +2,34 @@
 
     <v-container fluid>
       <v-row justify="center">
-        <v-col md="6" sm="6" xs="6"></v-col>
+        <v-col md="6" sm="6" xs="6">
+        </v-col>
         <v-col md="1" sm="1" xs="1">
+           
           <v-file-input
             prepend-icon="mdi-camera"
-            variant="plain"
             success
-            name="file"
+            variant="plain"
           accept="image/*"
-            v-model="submitFile"
             @change="handleFileSelect"
-          ></v-file-input>
+            v-model="submitFile"
+          
+          >
+              <template v-slot:selection="{ fileNames }">
+
+        <v-chip :key="fileName" v-for="fileName in fileNames"
+          size="small"
+          label
+          color="primary"
+          class="me-2"
+        >
+          {{ fileName }}
+        </v-chip>
+    </template>
+
+          
+          </v-file-input>
+             
         </v-col>
         <v-col md="5" sm="5" xs="5"> </v-col>
       </v-row>
@@ -26,7 +43,7 @@
                 :elevation="hover ? 12 : 2"
                 :class="{ 'on-hover': hover }"
               >
-                <v-img :src="pic" v-if="pic" aspect-ratio="1" class="grey lighten-2">
+                <v-img :src="pic" v-show="pic"  aspect-ratio="1" class="grey lighten-2">
                   <v-row
                     class="fill-height flex-column"
                     justify="end"
@@ -57,81 +74,69 @@
           </v-col>
         </template>
       </v-row>
-        <!-- <v-btn @click="getPhoto"> get Photo</v-btn>
-
-      <v-img
-        v-if="imsrc != null"
-        v-bind:src="'data:image/jpeg;base64,' + imsrc"
-        alt=""
-        aspect-ratio="1"
-        class="grey lighten-2"
-      >
-        >
-      </v-img> -->
       <button @click="postPhotos()">Submit</button>
 
     </v-container>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import Axios from 'axios';
 import { usephotosStore } from '../stores/photosStore';
 
 export default {
+ 
   setup() {
     const transparent = 'rgba(255, 255, 255, 0)';
-    const photos = ref([]);
-    const submitFile = ref(null);
-    const formDatas = ref([]);
     const store = usephotosStore();
-    const src = ref([]);
-
-
+   const submitFile=ref(null)
+  const photos = computed(() =>store.images); 
+            
      //select photos....
     const handleFileSelect = e => {
       const submitFile = e.target.files[0];
-      displayImage(submitFile);
+ if (submitFile) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const image=e.target.result;
+         store.updateImage(image)
+        
+      };
+        reader.readAsDataURL(submitFile);
+            }
+  
       console.log(submitFile);
     };
      
-      //display photos for preview....
-    const displayImage = submitFile => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        photos.value.push(e.target.result);
-      };
-      if (submitFile) {
-        reader.readAsDataURL(submitFile);
-      }
-    };
+ 
 
-        
+    
     const deletePhoto = i => {
-      photos.value.splice(i, 1);
+      store.removeImage(i);
     };
 
 
     const postPhotos = () => {
       const path = '/photos';
       let promises = [];
-      photos.value.forEach(() => {
+    photos.value.forEach(() => {
         promises.push(Axios.post(path, { summary: '' }));
       });
-
-      Promise.all(promises)
+                  
+      Promise.all(promises)                                                        
         .then(
           Axios.spread((...responses) => {
             responses.forEach(r => {
               let uri = r.data._links.self.href;
-              store.updatePhotoLinks(uri);
-              console.log('uri', uri);
-            });
-
-            let contentPromises = [];
-            let photoLinks = store.photoLinks;
-            photos.value.forEach((displayImage, i) => {
-              let promise = Axios.put(photoLinks[i], displayImage, {
+                store.updatePhotoLinks(uri)
+              console.log('uri', uri); 
+                     });
+               let contentPromises = [];
+              let link=store.photoLinks
+           
+          photos.value.forEach((handleFileSelect,i) => {
+              let promise = Axios.put(link[i], handleFileSelect, {
+              
                 headers: {
                   'Content-Type': 'image/jpeg'
                 }
@@ -145,6 +150,7 @@ export default {
                 console.error('Error during PUT requests:', error);
               });
           })
+    
         )
         .catch(error => {
           console.error('Error in Promise.all:', error);
@@ -154,13 +160,12 @@ export default {
     return {
       transparent,
       photos,
-      formDatas,
       store,
       handleFileSelect,
       submitFile,
       deletePhoto,
       postPhotos,
-      src
+ 
     };
   }
 };

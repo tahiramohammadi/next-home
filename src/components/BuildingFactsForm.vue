@@ -25,10 +25,12 @@
         </v-text-field>
       </v-col>
     </v-row>
-    <v-row justify="center">
-   Avilable dates 
-    </v-row>
-    <v-divider> </v-divider>
+   <v-row justify="center">
+   
+     <h4> Availble Dates</h4>
+      <v-divider></v-divider>
+ </v-row>
+   
 
 
     <v-row justify="start">
@@ -36,7 +38,7 @@
         <v-menu v-model="availableFromMenu" :close-on-content-click="false" :offset-y="true" max-width="280px"
           min-width="280px">
           <template v-slot:activator="{ on}">
-            <v-text-field label="Avilable from" v-model="availableFrom" color="#1DE9B6" type="date" :value="availableFromDisp" v-on="on">
+            <v-text-field label="Avilable from"  variant="outlined" v-model="availableFrom" color="#1DE9B6" type="date" :value="availableFromDisp">
             </v-text-field>
           </template>
         </v-menu>
@@ -45,12 +47,12 @@
 
     <v-row justify="start">
       <v-col cols="12" md="5">
-        <v-menu :offset-y="true" v-model="availableToMenu" :close-on-content-click="false" max-width="280px"
+        <v-menu :offset-y="true"   v-model="availableToMenu" :close-on-content-click="false" max-width="280px"
           min-width="280px">
-          <template v-slot:activator="{ on}">
-            <v-text-field label="Avilable to" type="date" color="#1DE9B6" v-model="availableTo" :value="availableToDisp" v-on="on">
+           <template v-slot:activator="{on}">
+            <v-text-field label="Avilable to" type="date" variant="outlined" color="#1DE9B6" v-model="availableTo" :value="availableToDisp">
             </v-text-field>
-          </template>
+           </template>
         </v-menu>
       </v-col>
     </v-row>
@@ -62,7 +64,7 @@ import { usebuildingFactsStore } from '../stores/buildingFactsStore.js';
 import { userubricStore } from '../stores/rubricStore.js';
 const store = usebuildingFactsStore()
 const rubricStore=userubricStore()
-const furnishments = ref(['Fully furnished', 'partly furnished', 'Not furnished']);
+const furnishments = ref(['Fully furnished', 'Partly furnished', 'Not furnished']);
 const availableFromMenu = ref(false)
 const availableToMenu = ref(false)
 

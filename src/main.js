@@ -9,15 +9,16 @@ import '@mdi/font/css/materialdesignicons.css';
 import 'vue3-toastify/dist/index.css';
 import Vue3Toastify from 'vue3-toastify';
 import Axios from 'axios';
-
+import piniaPluginPersistedState from "pinia-plugin-persistedstate"
 import { createPinia } from 'pinia'
 
 loadFonts()
 
 
 Axios.defaults.baseURL = 'http://localhost:8089';
-
-createApp(App).use(createPinia())
+const pinia=createPinia();
+pinia.use(piniaPluginPersistedState)
+createApp(App).use(pinia)
 .use(router).use(Vue3Toastify )
 
 .use(vuetify)

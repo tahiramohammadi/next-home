@@ -4,7 +4,7 @@ id:'address',
    state:() => ({
     address: {
       street:null,
-      houseNr:0,
+      houseNr:null,
       zipCode: null,
       city: null,
       moreInformation: null,
@@ -40,4 +40,5 @@ getters:{
     }
   }
  },
+ persist: true,
 });

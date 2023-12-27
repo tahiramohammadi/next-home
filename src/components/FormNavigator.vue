@@ -1,6 +1,10 @@
-<template>
+<template>     
   <v-row>
+  
+       
     <v-col>
+     
+      
       <v-btn v-show="!isFirst()" text color="#1DE9B6" class="text-white" @click="navigatePrevious">
         Previous
       </v-btn>
@@ -12,8 +16,11 @@
       <v-btn text color="#1DE9B6" @click="navigateNext" class="text-white">
         {{ nextButtonText() }}</v-btn
       >
+        
     </v-col>
+    
   </v-row>
+
 </template>
 
 <script>
@@ -23,13 +30,14 @@ import { usetitleAndDescriptionStore } from '../stores/titleAndDescriptionStore'
 import { usesizeStore } from '../stores/sizeStore.js';
 import { usepriceStore } from '../stores/priceStore';
 import { useusageStore } from '../stores/usageStore';
+import {useplotStore} from '../stores/plotstore';
 import { usebuildingFactsStore } from '../stores/buildingFactsStore';
 import { usecontactPersonStore } from '../stores/contactPersonStore';
 import { userubricStore } from '../stores/rubricStore';
 import { computed, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 export default {
-  setup() {
+  setup(props, {emit}) {
     ///routes
     const route = useRoute();
     const router = useRouter();
@@ -42,6 +50,7 @@ export default {
     const usageStore = useusageStore();
     const buildingStore = usebuildingFactsStore();
     const contactStore = usecontactPersonStore();
+    const plotStore= useplotStore()
     //getting data stores....
     const address = addressStore.getAddress;
     const contactPerson = contactStore.getContactPerson;
@@ -50,7 +59,7 @@ export default {
     const title = titleStore.getTitleAndDesc;
     const description = titleStore.getTitleAndDesc;
     const size = sizeStore.getSize;
-    const plotSize = sizeStore.getSize;
+    const plotSize = plotStore.getplot;
     const target = rubricStore.getTarget;
     const numberOfFloors = buildingStore.getFloor;
     const floorNumber = buildingStore.getfloorNum;
@@ -65,8 +74,8 @@ export default {
       price:price,
       title,
       plotSize:plotSize,
-      size:size,
       description,
+      size:size,
       usage,
       target,
       furnished,
@@ -98,6 +107,7 @@ export default {
       if (route.name === 'contactPersonForm') {
         if (rubricStore.uuid == null) {
           createProperty();
+             emit('postPhotos()');
         }
         linkPhotosAndProperty();
       } else if (route.name === 'mediaForm') {
@@ -130,6 +140,8 @@ export default {
           console.log(propertyHref);
           rubricStore.updatePropertyHref(propertyHref);
         });
+       
+   
       } catch (er) {
         console.log(er);
       }
@@ -137,6 +149,9 @@ export default {
 
     const updateProperty = () => {};
     const linkPhotosAndProperty = () => {};
+
+
+     
     return {
       propertyType,
       uuid,

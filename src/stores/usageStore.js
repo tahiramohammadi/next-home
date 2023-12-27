@@ -12,4 +12,5 @@ export const useusageStore=defineStore('usageStore',{
     return this.usage;
   },
 },
+persist: true,
 });

@@ -25,4 +25,5 @@ export const usesizeStore=defineStore('sizeStore',{
       }
     }
    }, 
+   persist: true,
 });

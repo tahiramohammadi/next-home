@@ -7,10 +7,11 @@
       </v-col>
     </v-row>
     <v-row justify="center">
-    Key facts </v-row>
-    <v-divider> </v-divider>
-
-
+   
+     <h4> Key facts</h4>
+      <v-divider></v-divider>
+ </v-row>
+   
     <SizeForm v-if="propertyType === 'Apartment' ||
       propertyType === 'Shop' ||
       propertyType === 'House'
@@ -21,10 +22,11 @@
     <PriceForm></PriceForm>
     <UsageForm > </UsageForm>
     <buildingFactsForm v-if="propertyType != 'Plot'"> </buildingFactsForm>
-    <v-row justify="center">
-  Object description 
-    </v-row>
-    <v-divider> </v-divider>
+   <v-row justify="center">
+   
+     <h4>Description</h4>
+      <v-divider></v-divider>
+ </v-row>
 
     <v-row justify="start">
       <v-col cols="12" md="10">

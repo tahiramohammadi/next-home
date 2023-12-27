@@ -19,4 +19,5 @@ getters:{
    return this.title, this.description
 },
 },
+persist: true,
 });
