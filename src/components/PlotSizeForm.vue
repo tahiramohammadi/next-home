@@ -1,10 +1,10 @@
 <template>
-  <v-row justify="start">
-    <v-col cols="8" md="5">
+  <v-row justify="center">
+    <v-col cols="8" md="6">
       <v-text-field variant="outlined" color="#1DE9B6" dense flat v-model="value" label="Plot size">
       </v-text-field>
     </v-col>
-    <v-col cols="4" md="3">
+    <v-col cols="4" md="4">
       <v-select variant="outlined" v-model="unit" :items="sizeUnits" label="Unit" dense color="#1DE9B6" item-color="success"
         offset-y>
       </v-select>

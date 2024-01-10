@@ -1,13 +1,15 @@
 <template>
   <v-container fluid>
+     <h4 class="d-flex flex-row">Rubric</h4>
     <v-divider></v-divider>
 
-    <h4>Rubric</h4>
-    <RubricForm> </RubricForm>
+   
+    <RubricForm />
+    
+   
     <v-divider></v-divider>
-
-    <h4>Address</h4>
-    <AddressForm> </AddressForm>
+ <h4  class="d-flex flex-row"> Address</h4>
+    <AddressForm/>
    
   </v-container>
 </template>

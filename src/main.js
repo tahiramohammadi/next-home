@@ -18,8 +18,5 @@ loadFonts()
 Axios.defaults.baseURL = 'http://localhost:8089';
 const pinia=createPinia();
 pinia.use(piniaPluginPersistedState)
-createApp(App).use(pinia)
-.use(router).use(Vue3Toastify )
-
-.use(vuetify)
+createApp(App).use(pinia).use(router).use(Vue3Toastify ).use(vuetify)
 .mount('#app')

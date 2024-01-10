@@ -1,6 +1,6 @@
 <template>
-  <v-row justify="start">
-    <v-col cols="8" md="5">
+  <v-row justify="center">
+    <v-col cols="12" md="5">
       <v-text-field
       variant="outlined"
         dense
@@ -12,7 +12,7 @@
       </v-text-field>
     </v-col>
 
-    <v-col cols="4" md="3">
+    <v-col cols="12" md="2">
       <h3>{{ squareMeter }}</h3>
     </v-col>
   </v-row>

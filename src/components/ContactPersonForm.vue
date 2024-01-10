@@ -1,29 +1,31 @@
 <template>
   <v-container>
-    <v-card row wrap justify-space-around>
-
+    
+    <v-row justify="start">
+        <v-divider></v-divider>
+         <h4 class="d-flex flex-row">Contact</h4>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" md="3">
         <v-text-field variant="outlined" dense flat v-model="name" label="Name" color="#1DE9B6">
         </v-text-field>
-
-    </v-card>
-    <v-card row wrap justify-space-around>
-
+    </v-col>
+      <v-col cols="12" md="3">
         <v-text-field variant="outlined" dense flat v-model="email" label="Email address"  color="#1DE9B6">
         </v-text-field>
-    
-    </v-card>
-    <v-card row wrap justify-space-around>
-  
+    </v-col>
+      <v-col cols="12" md="3">
         <v-text-field variant="outlined" dense flat v-model="phoneNumber" label="Phone number"  color="#1DE9B6">
         </v-text-field>
-  
-    </v-card>
-    <v-card row wrap justify-space-around>
- 
+    </v-col>
+    </v-row>
+        <v-row justify="center">
+    <v-col cols="12" md="9">
         <v-textarea auto-grow variant="outlined" rows="3" v-model="moreInfo" label="More information"  color="#1DE9B6">
         </v-textarea>
-  
-    </v-card>
+    </v-col>
+
+    </v-row>
   </v-container>
 </template>
 

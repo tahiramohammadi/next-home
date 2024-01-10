@@ -19,12 +19,7 @@ export const usephotosStore=defineStore('photosStore',{
     removeImage(i) {
       this.images.splice(i, 1);
     },
-  },
-  getters:{
-    getPhoto(){
-      return this.photoLinks
-     
-    } 
-   },
-   
+
+    
+  }, 
 });

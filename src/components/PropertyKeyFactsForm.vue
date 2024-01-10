@@ -1,14 +1,17 @@
 <template>
   <v-container fluid>
-    <v-row justify="start">
-      <v-col cols="12" md="3">
+    <v-row justify="center">
+      <v-col cols="6" md="3">
         <v-text-field dense flat v-model="title" label="Title" color="#1DE9B6" variant="outlined">
         </v-text-field>
       </v-col>
+      <v-col cols="12" md="6">
+        <UsageForm > </UsageForm>
+        </v-col>
     </v-row>
-    <v-row justify="center">
+    <v-row class="d-flex flex-row">
    
-     <h4> Key facts</h4>
+     <h4 > Key facts</h4>
       <v-divider></v-divider>
  </v-row>
    
@@ -20,15 +23,14 @@
     <plotSizeForm v-if="propertyType === 'Plot' || propertyType === 'House'">
     </plotSizeForm>
     <PriceForm></PriceForm>
-    <UsageForm > </UsageForm>
     <buildingFactsForm v-if="propertyType != 'Plot'"> </buildingFactsForm>
-   <v-row justify="center">
+   <v-row class="d-flex flex-row">
    
-     <h4>Description</h4>
+     <h4 >Description</h4>
       <v-divider></v-divider>
  </v-row>
 
-    <v-row justify="start">
+    <v-row justify="center">
       <v-col cols="12" md="10">
         <v-textarea dense flat v-model="description" label="Description" color="#1DE9B6" aria-multiline="8" variant="outlined"
           placeholder="Describe the propertty. provide more detail about property, its location and etc... ">

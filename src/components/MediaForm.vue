@@ -1,6 +1,10 @@
 <template>
 
     <v-container fluid>
+      <v-row justify="start">
+         <v-divider></v-divider>
+            <h4>File Upload</h4>
+            </v-row>
       <v-row justify="center">
         <v-col md="6" sm="6" xs="6">
         </v-col>
@@ -74,69 +78,67 @@
           </v-col>
         </template>
       </v-row>
-      <button @click="postPhotos()">Submit</button>
-
     </v-container>
 </template>
 
-<script>
-import { ref, computed, onMounted } from 'vue';
+<script setup>
+import { ref, computed} from 'vue';
 import Axios from 'axios';
 import { usephotosStore } from '../stores/photosStore';
 
-export default {
- 
-  setup() {
     const transparent = 'rgba(255, 255, 255, 0)';
     const store = usephotosStore();
-   const submitFile=ref(null)
-  const photos = computed(() =>store.images); 
-            
-     //select photos....
+    const submitFile = ref(null);
+    const photos = computed(() => store.images);
+
+    //select photos....
     const handleFileSelect = e => {
       const submitFile = e.target.files[0];
- if (submitFile) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const image=e.target.result;
-         store.updateImage(image)
-        
-      };
+      if (submitFile) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const image = e.target.result;
+          store.updateImage(image);
+        };
         reader.readAsDataURL(submitFile);
-            }
-  
+      }
+
       console.log(submitFile);
     };
-     
- 
 
-    
     const deletePhoto = i => {
       store.removeImage(i);
     };
 
+  //  const props=defineProps({
+  //    postPhotos: {
+  //     type: Function,
+  //   default:()=>{}
+  //   },
+  //  });
+
+ 
 
     const postPhotos = () => {
       const path = '/photos';
       let promises = [];
-    photos.value.forEach(() => {
+      photos.value.forEach(() => {
         promises.push(Axios.post(path, { summary: '' }));
       });
-                  
-      Promise.all(promises)                                                        
+
+      Promise.all(promises)
         .then(
           Axios.spread((...responses) => {
             responses.forEach(r => {
               let uri = r.data._links.self.href;
-                store.updatePhotoLinks(uri)
-              console.log('uri', uri); 
-                     });
-               let contentPromises = [];
-              let link=store.photoLinks
-           
-          photos.value.forEach((handleFileSelect,i) => {
+              store.updatePhotoLinks(uri);
+              console.log('uri', uri);
+            });
+            let contentPromises = [];
+            let link = store.photoLinks;
+
+            photos.value.forEach((handleFileSelect, i) => {
               let promise = Axios.put(link[i], handleFileSelect, {
-              
                 headers: {
                   'Content-Type': 'image/jpeg'
                 }
@@ -150,25 +152,14 @@ export default {
                 console.error('Error during PUT requests:', error);
               });
           })
-    
         )
         .catch(error => {
           console.error('Error in Promise.all:', error);
         });
     };
 
-    return {
-      transparent,
-      photos,
-      store,
-      handleFileSelect,
-      submitFile,
-      deletePhoto,
-      postPhotos,
  
-    };
-  }
-};
+
 </script>
 <style scoped>
 .my-8 {

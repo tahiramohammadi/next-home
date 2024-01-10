@@ -1,7 +1,5 @@
 <template>     
   <v-row>
-  
-       
     <v-col>
      
       
@@ -17,13 +15,15 @@
         {{ nextButtonText() }}</v-btn
       >
         
+     
     </v-col>
-    
+           
   </v-row>
 
 </template>
 
 <script>
+
 import Axios from 'axios';
 import { useaddressStore } from '../stores/addressStore';
 import { usetitleAndDescriptionStore } from '../stores/titleAndDescriptionStore';
@@ -34,10 +34,10 @@ import {useplotStore} from '../stores/plotstore';
 import { usebuildingFactsStore } from '../stores/buildingFactsStore';
 import { usecontactPersonStore } from '../stores/contactPersonStore';
 import { userubricStore } from '../stores/rubricStore';
-import { computed, ref } from 'vue';
+import { computed, ref} from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 export default {
-  setup(props, {emit}) {
+  setup() {
     ///routes
     const route = useRoute();
     const router = useRouter();
@@ -67,7 +67,7 @@ export default {
     const availableFrom = buildingStore.getAvailbleFrom;
     const availableTo = buildingStore.getAvailbleTo;
     const numberOfRooms = buildingStore.getNum;
-
+    
     const payload = ref({
       address:address,
       contactPerson:contactPerson,
@@ -84,7 +84,7 @@ export default {
       numberOfRooms,
       availableFrom:availableFrom,
       availableTo,
-    
+
     });
 
     //computed ...
@@ -107,8 +107,8 @@ export default {
       if (route.name === 'contactPersonForm') {
         if (rubricStore.uuid == null) {
           createProperty();
-             emit('postPhotos()');
         }
+
         linkPhotosAndProperty();
       } else if (route.name === 'mediaForm') {
         router.push('/insertOffer/contactPerson');
@@ -128,14 +128,14 @@ export default {
         router.push('/insertOffer/rubric');
       }
     };
-
-    const createProperty = () => {
+ const createProperty =  async() => {
       try {
+    
         console.log('submit called');
         let path = '/' + rubricStore.propertyType.toLowerCase() + 's';
         console.log(path);
         console.log(JSON.stringify(payload.value));
-        Axios.post(path, payload.value).then(r => {
+       await Axios.post(path, payload.value).then(r => {
           const propertyHref = r.data._links.self.href;
           console.log(propertyHref);
           rubricStore.updatePropertyHref(propertyHref);
@@ -147,8 +147,14 @@ export default {
       }
     };
 
-    const updateProperty = () => {};
-    const linkPhotosAndProperty = () => {};
+ 
+    const linkPhotosAndProperty = () => {
+      if (postPhotos) {
+        postPhotos(); // Call the postPhotos function
+      } else {
+        console.error("Injection 'postPhotos' not found.");
+      }
+    };
 
 
      
@@ -156,12 +162,13 @@ export default {
       propertyType,
       uuid,
       createProperty,
-      updateProperty,
       linkPhotosAndProperty,
       isFirst,
       nextButtonText,
       navigateNext,
-      navigatePrevious
+      navigatePrevious,
+
+     
     };
   }
 };
