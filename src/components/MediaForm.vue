@@ -110,14 +110,6 @@ import { usephotosStore } from '../stores/photosStore';
       store.removeImage(i);
     };
 
-  //  const props=defineProps({
-  //    postPhotos: {
-  //     type: Function,
-  //   default:()=>{}
-  //   },
-  //  });
-
- 
 
     const postPhotos = () => {
       const path = '/photos';
@@ -158,7 +150,6 @@ import { usephotosStore } from '../stores/photosStore';
         });
     };
 
- 
 
 </script>
 <style scoped>

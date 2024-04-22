@@ -25,5 +25,5 @@ export const usesizeStore=defineStore('sizeStore',{
       }
     }
    }, 
-   persist: true,
+   persist:true,
 });

@@ -40,5 +40,5 @@ getters:{
     }
   }
  },
- persist: true,
+ persist:true,
 });

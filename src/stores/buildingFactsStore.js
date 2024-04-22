@@ -69,5 +69,5 @@ export const usebuildingFactsStore = defineStore('buildingFactsStore', {
 
   }
   },
-  persist: true,
+  persist:true,
 });

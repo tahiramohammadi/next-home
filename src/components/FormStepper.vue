@@ -27,7 +27,7 @@ import { useusageStore } from '../stores/usageStore';
 import { useplotStore } from '../stores/plotstore';
 import { usebuildingFactsStore } from '../stores/buildingFactsStore';
 import { usecontactPersonStore } from '../stores/contactPersonStore';
-import { computed, ref } from 'vue';
+import { computed, ref} from 'vue';
 import Axios from 'axios';
 import Vue3MultiStepper from './common/Vue3MultiStepper.vue';
 import RubricAndAddressForm from './RubricAndAddressForm.vue';
@@ -64,7 +64,7 @@ const furnished = buildingStore.getfurnished;
 const availableFrom = buildingStore.getAvailbleFrom;
 const availableTo = buildingStore.getAvailbleTo;
 const numberOfRooms = buildingStore.getNum;
- 
+  const MediaRef=ref(null);
     //get data with payload to submit...
 
 const payload = ref({
@@ -113,11 +113,17 @@ const tabs = computed(() => [
 //get propertytipe and uuid
  const propertyType = computed(() => rubricStore.propertyType);
 const uuid = computed(() => rubricStore.uuid);
-
  //submit our data
+
+
+
+  const emit= defineEmits(["postPhotos"])
+
+  
 const handleFormSubmission = async () => {
   loading.value = true;
   try {
+      emit("postPhotos")
     console.log('submit called');
     let path = '/' + rubricStore.propertyType.toLowerCase() + 's';
     console.log(path);
@@ -131,8 +137,9 @@ const handleFormSubmission = async () => {
   }
   setTimeout(() => {
     location.reload();
-  }, 2000);
+  }, 4000);
 };
+
 </script>
 
 <style scoped>

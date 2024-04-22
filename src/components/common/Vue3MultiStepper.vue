@@ -44,11 +44,12 @@
     </div>
 
     <div class="controls">
+    
       <button class="btn" @click="decrementStep" v-if="props.step !== 1">
         {{ props.backText }}
       </button>
       <button
-        class="btn btn--default-2"
+        class=" btn--default-2"
         @click="incrementStep"
         v-if="props.step !== props.tabs.length"
         :disabled="!props.tabs[props.step - 1].isValid"
@@ -56,7 +57,7 @@
         {{ props.nextText }}
       </button>
       <button
-        class="btn btn--default-2"
+        class=" btn--default-2"
         @click="finalize"
         v-else
         :disabled="!props.tabs[props.step - 1].isValid || loading"
@@ -310,9 +311,7 @@ body {
   margin: 60px 0 20px 0;
 }
 
-.controls {
-  display: flex;
-}
+
 
 .btn {
   display: flex;
@@ -367,7 +366,7 @@ body {
 
 .controls {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 2rem;
 }
 
@@ -382,6 +381,10 @@ body {
   background: #1DE9B6;
   border-radius: 4px;
   border: none;
+  float: left;
+   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 40px;
   width: 10%;
   font-size: 1rem;

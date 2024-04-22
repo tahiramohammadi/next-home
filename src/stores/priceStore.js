@@ -21,5 +21,5 @@ export const usepriceStore=defineStore('priceStore', {
       }
     }
    },
-   persist: true,
+   persist:true,
 });

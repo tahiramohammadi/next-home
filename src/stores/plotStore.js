@@ -26,5 +26,5 @@ export const useplotStore=defineStore('plotStore',{
         }
       }
      },
-     persist: true, 
+     persist:true,
   });

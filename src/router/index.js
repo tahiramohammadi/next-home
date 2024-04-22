@@ -7,47 +7,47 @@ import listPropertyType from '@/@pages/propertyType/listPropertyType.vue'
 import FormStepper from '@/components/FormStepper.vue'
 const routes = [
 
-  {
-    path: '/insertOffer',
-    name: 'InsertOffer',
-    component: () =>
-      import(
-'../components/InsertOffer.vue'
-      ),
+//   {
+//     path: '/insertOffer',
+//     name: 'InsertOffer',
+//     component: () =>
+//       import(
+// '../components/InsertOffer.vue'
+//       ),
      
-    children: [
-      {
-        path: 'rubric',
-        name: 'rubricForm',
-        component: () =>
-          import(
-       '../components/RubricAndAddressForm.vue'
-          ),
-      },
-      {
-        path: 'keyFacts',
-        name: 'keyFactsForm',
-        component: () =>
-          import(
-         '../components/PropertyKeyFactsForm.vue'
-          ),
-      },
-      {
-        path: 'contactPerson',
-        name: 'contactPersonForm',
-        component: () =>
-          import(
-           '../components/ContactPersonForm.vue'
-          ),
-      },
-      {
-        path: 'media',
-        name: 'mediaForm',
-        component: MediaForm,
+//     children: [
+//       {
+//         path: 'rubric',
+//         name: 'rubricForm',
+//         component: () =>
+//           import(
+//        '../components/RubricAndAddressForm.vue'
+//           ),
+//       },
+//       {
+//         path: 'keyFacts',
+//         name: 'keyFactsForm',
+//         component: () =>
+//           import(
+//          '../components/PropertyKeyFactsForm.vue'
+//           ),
+//       },
+//       {
+//         path: 'contactPerson',
+//         name: 'contactPersonForm',
+//         component: () =>
+//           import(
+//            '../components/ContactPersonForm.vue'
+//           ),
+//       },
+//       {
+//         path: 'media',
+//         name: 'mediaForm',
+//         component: MediaForm,
         
-      },
-    ],
-  },
+//       },
+//     ],
+//   },
   {
      path:'/signup', 
      name:'signUp',

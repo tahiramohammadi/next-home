@@ -28,5 +28,6 @@ export const userubricStore=defineStore('rubricStore',{
     }
   }
  },
- persist: true,
+ persist:true,
+
 });
